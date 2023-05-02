@@ -1,18 +1,35 @@
 package model.entidades;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class Turma  {
+public class Turma  implements Serializable{
     private String nome;
     private short vagas;
     private String horarios;
     private short turma;
     private String periodo;
-    private LinkedList<Professor> docentes;
+    private String codTurma;
+    private LinkedList<String> docentes;
 
 
 
+    public Turma(String[] docente,String nome, short vagas, String horarios, short turma, String periodo, String codTurma) {
+        this.docentes = new LinkedList<>();
+        this.nome = nome;
+        this.vagas = vagas;
+        this.horarios = horarios;
+        this.turma = turma;
+        this.periodo = periodo;
+        this.codTurma = codTurma;
+        for (int i = 0; i < docente.length; i++) {
+            adicionarDocente(docente[i]);
+        }
+    }
+
+    public Turma() {
+    }
 
     public String getNome() {
         return nome;
@@ -20,6 +37,15 @@ public class Turma  {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    
+    public String getCodTurma() {
+        return codTurma;
+    }
+
+    public void setCodTurma(String codTurma) {
+        this.codTurma = codTurma;
     }
 
     public short getVagas() {
@@ -54,21 +80,22 @@ public class Turma  {
         this.periodo = periodo;
     }
 
-    public LinkedList<Professor> getDocentes() {
+    public LinkedList<String> getDocentes() {
         return docentes;
     }
 
-    public void remover(String nomeDisciplina){
-        Iterator<Professor> interatorDocente = docentes.iterator();
-        while(interatorDocente.hasNext()){
-            if(nomeDisciplina == interatorDocente.next().getNome()){
-                interatorDocente.remove();
+    public void removerDocente(String docente){
+        Iterator<String> iteratorDocente = docentes.iterator();
+        while(iteratorDocente.hasNext()){
+            if(iteratorDocente.next() == docente ){
+                iteratorDocente.remove();
+                break;
             }
         }
     }
 
-    public void adicionar(Professor docente){
-        docentes.add(docente);
+    public void adicionarDocente(String docente){
+        this.docentes.add(docente);
     }
 
 }

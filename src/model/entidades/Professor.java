@@ -1,32 +1,47 @@
 package model.entidades;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class Professor {
+public class Professor implements Serializable{
     private String nome;
     private int matricula;
     private String email;
     private short cargaHorariaSemanal;
     private String titulacao;
-    private LinkedList<Turma> turmas;
+    private LinkedList<String> turmas;
     private String telefone;
 
 
 
-    public Professor(String nome, int matricula, String email, String titulacao) {
+    
+
+    public Professor() {
+    }
+
+    
+    public Professor(String nome, int matricula, String email, short cargaHorariaSemanal, String titulacao,
+            String telefone) {
         this.nome = nome;
         this.matricula = matricula;
         this.email = email;
+        this.cargaHorariaSemanal = cargaHorariaSemanal;
         this.titulacao = titulacao;
+        this.telefone = telefone;
     }
 
-    public Professor(String nome, int matricula, String email, String titulacao, String telefone) {
+
+    public Professor(String[] turma,String nome, int matricula, String email, String titulacao, String telefone) {
+        this.turmas = new LinkedList<>();
         this.nome = nome;
         this.matricula = matricula;
         this.email = email;
         this.titulacao = titulacao;
         this.telefone = telefone;
+        for (int i = 0; i < turma.length; i++) {
+            addTurma(turma[i]);
+        }
     }
 
     public String getTelefone() {
@@ -77,20 +92,21 @@ public class Professor {
         this.titulacao = titulacao;
     }
     
-    public LinkedList<Turma> getturmas() {
+    public LinkedList<String> getturmas() {
         return turmas;
     }
     
-    public void removerDisciplina(String nomeDisciplina){
-        Iterator<Turma> interatorDisciplina = turmas.iterator();
+    public void removerTurma(String nomeDisciplina){
+        Iterator<String> interatorDisciplina = turmas.iterator();
         while(interatorDisciplina.hasNext()){
-            if(nomeDisciplina == interatorDisciplina.next().getNome()){
+            if(nomeDisciplina == interatorDisciplina.next()){
                 interatorDisciplina.remove();
+                break;
             }
         }
     }
     
-    public void addDisciplina(Turma disciplina){
-        turmas.add(disciplina);
+    public void addTurma(String turma){
+        turmas.add(turma);
     }
 }
