@@ -23,14 +23,13 @@ public class ProfessorDAO {
     }
 
     public boolean inserir(Professor Professor) {
-        String sql = "INSERT INTO Professores(nome, matricula, titulacao, email, telefone) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO professores(nome, matricula, titulacao, email) VALUES(?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, Professor.getNome());
             stmt.setInt(2, Professor.getMatricula());
             stmt.setString(3, Professor.getTitulacao());
             stmt.setString(4, Professor.getEmail());
-            stmt.setString(5, Professor.getTelefone());
             stmt.execute();
             return true;
         } catch (SQLException ex) {
@@ -40,14 +39,13 @@ public class ProfessorDAO {
     }
 
     public boolean alterar(Professor Professor) {
-        String sql = "UPDATE Professors SET nome=?, titulacao=?, email=?, telefone=? WHERE MatProfessor=?";
+        String sql = "UPDATE professores SET nome=?, titulacao=?, email=? WHERE matricula=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, Professor.getNome());
             stmt.setString(2, Professor.getTitulacao());
             stmt.setString(3, Professor.getEmail());
-            stmt.setString(4, Professor.getTelefone());
-            stmt.setInt(5, Professor.getMatricula());
+            stmt.setInt(4, Professor.getMatricula());
             stmt.execute();
             return true;
         } catch (SQLException ex) {
@@ -57,7 +55,7 @@ public class ProfessorDAO {
     }
 
     public boolean remover(Professor Professor) {
-        String sql = "DELETE FROM Professors WHERE MatProfessor=?";
+        String sql = "DELETE FROM professores WHERE matricula=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, Professor.getMatricula());
@@ -70,28 +68,27 @@ public class ProfessorDAO {
     }
 
     public List<Professor> listar() {
-        String sql = "SELECT * FROM Professors";
+        String sql = "SELECT * FROM professores";
         List<Professor> retorno = new ArrayList<>();
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             ResultSet resultado = stmt.executeQuery();
             while (resultado.next()) {
                 Professor Professor = new Professor();
-                Professor.setNome(resultado.getString("MtProfessor"));
+                Professor.setNome(resultado.getString("matricula"));
                 Professor.setMatricula(resultado.getInt("nome"));
-                Professor.setTitulacao(resultado.getString("cpf"));
-                Professor.setEmail(resultado.getString("telefone"));
-                Professor.setTelefone(resultado.getString("telefone"));
+                Professor.setTitulacao(resultado.getString("titulacao"));
+                Professor.setEmail(resultado.getString("email"));
                 retorno.add(Professor);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Erro ao listar os professores");
         }
         return retorno;
     }
 
     public Professor buscar(Professor Professor) {
-        String sql = "SELECT * FROM Professors WHERE cdProfessor=?";
+        String sql = "SELECT * FROM professores WHERE matricula=?";
         Professor retorno = new Professor();
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -102,7 +99,6 @@ public class ProfessorDAO {
                 Professor.setMatricula(resultado.getInt("matricula"));
                 Professor.setTitulacao(resultado.getString("titulacao"));
                 Professor.setEmail(resultado.getString("email"));               
-                Professor.setTelefone(resultado.getString("telefone"));
                 retorno = Professor;
             }
         } catch (SQLException ex) {
