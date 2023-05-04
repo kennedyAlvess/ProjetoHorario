@@ -11,19 +11,19 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 
 public class MainController implements Initializable {
-
+    @FXML
     private MenuItem menuCadastrarProfessores;
-
+    @FXML
     private MenuItem menuListaProfessores;
-
+    @FXML
     private MenuItem menuCadastrarCC;
-
+    @FXML
     private MenuItem menuVisualizarCC;
-
+    @FXML
     private MenuItem menuCriarTurmas;
-
+    @FXML
     private MenuItem menuConsultarTurmas;
-
+    @FXML
     private AnchorPane anchorPane;
 
     @Override
@@ -33,7 +33,7 @@ public class MainController implements Initializable {
 
     @FXML
     public void handleMenuCadastroProfessor() throws IOException{
-        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("view/CadastroProfessorMenu.fxml"));
+        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/CadastroProfessorMenu.fxml"));
         anchorPane.getChildren().setAll(a);
     }
 }
