@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,8 +10,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 
 public class MainController implements Initializable {
-    @FXML
-    private MenuItem menuCadastrarProfessores;
+ 
     @FXML
     private MenuItem menuListaProfessores;
     @FXML
@@ -33,7 +31,9 @@ public class MainController implements Initializable {
 
     @FXML
     public void handleMenuCadastroProfessor() throws IOException{
-        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/CadastroProfessorMenu.fxml"));
+        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/ProfessorMenu.fxml"));
         anchorPane.getChildren().setAll(a);
     }
+
+
 }
