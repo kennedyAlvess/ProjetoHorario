@@ -37,6 +37,8 @@ public class ProfessorMenuController implements Initializable{
     @FXML
     private Button botaoRemover;
     @FXML
+    private Button botaoCadastrar;
+    @FXML
     private Label labelProfessorNome;
     @FXML
     private Label labelProfessorMatricula;
@@ -70,7 +72,7 @@ public class ProfessorMenuController implements Initializable{
     public void selecionarItemTableViewProfessor(Professor professor){
         if (professor != null) {
             labelProfessorNome.setText(professor.getNome());
-            labelProfessorMatricula.setText(String.valueOf(professor.getMatricula()));
+            labelProfessorMatricula.setText(professor.getMatricula());
             labelProfessorTitulacao.setText(professor.getTitulacao());
             labelProfessorEmail.setText(professor.getEmail());          
         } else {
@@ -96,8 +98,8 @@ public class ProfessorMenuController implements Initializable{
     public void handleBotaoAlterar() throws IOException {
         Professor professor = tableViewProfessor.getSelectionModel().getSelectedItem();
         if (professor != null) {
-            boolean buttonConfirmarClicked = showCadastroProfessor(professor);
-            if (buttonConfirmarClicked) {
+            boolean botaoConfirmarClicado = showCadastroProfessor(professor);
+            if (botaoConfirmarClicado) {
                 professorDAO.alterar(professor);
                 carregarTableViewProfessor();
             }
@@ -114,6 +116,9 @@ public class ProfessorMenuController implements Initializable{
         if (professor != null) {
             professorDAO.remover(professor);
             carregarTableViewProfessor();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText(professor.getNome()+" REMOVIDO COM SUCESSO!");
+            alert.show();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Por favor, escolha um professor na Tabela!");
