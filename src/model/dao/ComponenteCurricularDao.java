@@ -70,7 +70,7 @@ public class ComponenteCurricularDAO {
     }
 
     public List<ComponenteCurricular> listar() {
-        String sql = "Select * from ComponenteCurriculares order by nome";
+        String sql = "select * from componentecurricular order by nomecc";
         List<ComponenteCurricular> retorno = new ArrayList<>();
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
