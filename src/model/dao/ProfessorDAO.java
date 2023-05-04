@@ -69,7 +69,7 @@ public class ProfessorDAO {
     }
 
     public List<Professor> listar() {
-        String sql = "Select * from professores";
+        String sql = "Select * from professores order by nome";
         List<Professor> retorno = new ArrayList<>();
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -106,6 +106,23 @@ public class ProfessorDAO {
             Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return retorno;
+    }
+
+    public List<String> matricula() {
+        String sql = "SELECT matricula FROM professores";
+        List<String> matriculas = new ArrayList<>();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet resultado = stmt.executeQuery();
+            while (resultado.next()) {
+                Professor professor = new Professor();
+                professor.setMatricula(resultado.getString("matricula"));
+                matriculas.add(professor.getMatricula());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return matriculas;
     }
 }
 

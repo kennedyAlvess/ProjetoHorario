@@ -9,8 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import model.entidades.Professor;
+
 
 public class CadastroProfessorController implements Initializable {
     @FXML
@@ -30,9 +30,6 @@ public class CadastroProfessorController implements Initializable {
 
     @FXML
     private Button botaoConfirmar;
-
-    @FXML
-    private Button botaoCadastrar;
 
     @FXML
     private Label labelProfessorEmail;
@@ -58,13 +55,12 @@ public class CadastroProfessorController implements Initializable {
 
     @FXML
     public void handleBotaoConfirmar(){
-
         if (validarEntradaDeDados()) {
             professor.setNome(TextFieldProfessorNome.getText());
             professor.setMatricula(TextFieldProfessorMat.getText());
             professor.setTitulacao(TextFieldProfessorTitulo.getText());
             professor.setEmail(TextFieldProfessorEmail.getText());
-    
+            
             botaoConfirmarClicado = true;
             interacao.close();
         }
@@ -74,7 +70,6 @@ public class CadastroProfessorController implements Initializable {
     public void handleBotaoCancelar(){
         interacao.close();
     }
-
 
     public Stage getInteracao() {
         return interacao;
@@ -103,11 +98,12 @@ public class CadastroProfessorController implements Initializable {
     private boolean validarEntradaDeDados() {
         String errorMessage = "";
 
+
         if (TextFieldProfessorNome.getText() == null || TextFieldProfessorNome.getText().length() == 0) {
             errorMessage += "Nome inválido!\n";
         }
-        if (TextFieldProfessorMat.getText() == null || TextFieldProfessorMat.getText().length() < 10 || !TextFieldProfessorMat.getText().matches("[0-9]*")) {
-            errorMessage += "Matricula inválida! *Ex: 0123456789 *\n";
+        if (  TextFieldProfessorMat.getText() == null || TextFieldProfessorMat.getText().length() < 10 || !TextFieldProfessorMat.getText().matches("[0-9]*")) {
+            errorMessage += "Matricula inválida! *Ex: 0123456789 *\n";  
         }
         if (TextFieldProfessorTitulo.getText() == null || TextFieldProfessorTitulo.getText().length() == 0) {
             errorMessage += "Titulacao inválida!\n";
