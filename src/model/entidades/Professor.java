@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Professor implements Serializable{
     private String nome;
-    private int matricula;
+    private String matricula;
     private String email;
     private short cargaHorariaSemanal;
     private String titulacao;
@@ -13,7 +13,7 @@ public class Professor implements Serializable{
     }
 
     
-    public Professor(String nome, int matricula, String titulacao, String email, String telefone) {
+    public Professor(String nome, String matricula, String titulacao, String email, String telefone) {
         this.nome = nome;
         this.matricula = matricula;
         this.email = email;
@@ -29,11 +29,11 @@ public class Professor implements Serializable{
         this.nome = nome;
     }
 
-    public int getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 

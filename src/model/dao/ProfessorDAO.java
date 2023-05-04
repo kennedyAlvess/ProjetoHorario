@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import model.entidades.Professor;
 
 public class ProfessorDAO {
@@ -27,7 +28,7 @@ public class ProfessorDAO {
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, Professor.getNome());
-            stmt.setInt(2, Professor.getMatricula());
+            stmt.setString(2, Professor.getMatricula());
             stmt.setString(3, Professor.getTitulacao());
             stmt.setString(4, Professor.getEmail());
             stmt.execute();
@@ -45,7 +46,7 @@ public class ProfessorDAO {
             stmt.setString(1, Professor.getNome());
             stmt.setString(2, Professor.getTitulacao());
             stmt.setString(3, Professor.getEmail());
-            stmt.setInt(4, Professor.getMatricula());
+            stmt.setString(4, Professor.getMatricula());
             stmt.execute();
             return true;
         } catch (SQLException ex) {
@@ -58,7 +59,7 @@ public class ProfessorDAO {
         String sql = "DELETE FROM professores WHERE matricula=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, Professor.getMatricula());
+            stmt.setString(1, Professor.getMatricula());
             stmt.execute();
             return true;
         } catch (SQLException ex) {
@@ -74,12 +75,12 @@ public class ProfessorDAO {
             PreparedStatement stmt = connection.prepareStatement(sql);
             ResultSet resultado = stmt.executeQuery();
             while (resultado.next()) {
-                Professor Professor = new Professor();
-                Professor.setNome(resultado.getString("nome"));
-                Professor.setMatricula(resultado.getInt("matricula"));
-                Professor.setTitulacao(resultado.getString("titulacao"));
-                Professor.setEmail(resultado.getString("email"));
-                retorno.add(Professor);
+                Professor professor = new Professor();
+                professor.setNome(resultado.getString("nome"));
+                professor.setMatricula(resultado.getString("matricula"));
+                professor.setTitulacao(resultado.getString("titulacao"));
+                professor.setEmail(resultado.getString("email"));
+                retorno.add(professor);
             }
         } catch (SQLException ex) {
             System.out.println("Erro ao listar os professores");
@@ -92,11 +93,11 @@ public class ProfessorDAO {
         Professor retorno = new Professor();
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, Professor.getMatricula());
+            stmt.setString(1, Professor.getMatricula());
             ResultSet resultado = stmt.executeQuery();
             if (resultado.next()) {
                 Professor.setNome(resultado.getString("nome"));
-                Professor.setMatricula(resultado.getInt("matricula"));
+                Professor.setMatricula(resultado.getString("matricula"));
                 Professor.setTitulacao(resultado.getString("titulacao"));
                 Professor.setEmail(resultado.getString("email"));               
                 retorno = Professor;
