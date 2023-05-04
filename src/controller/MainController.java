@@ -35,5 +35,11 @@ public class MainController implements Initializable {
         anchorPane.getChildren().setAll(a);
     }
 
+    @FXML
+    public void handleMenuCC() throws IOException{
+        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/CCmenu.fxml"));
+        anchorPane.getChildren().setAll(a);
+    }
+
 
 }

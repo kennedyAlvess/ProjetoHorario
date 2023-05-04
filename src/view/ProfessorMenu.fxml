@@ -30,7 +30,7 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="418.0" prefWidth="388.0">
                <children>
-                  <Label layoutX="150.0" layoutY="14.0" text="Detalhes">
+                  <Label layoutX="150.0" layoutY="14.0" text="Detalhes" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="229.0">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -57,7 +57,7 @@
                         <Label fx:id="labelProfessorEmail" prefHeight="17.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
-                  <Group layoutX="65.0" layoutY="316.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="71.0">
+                  <Group layoutX="65.0" layoutY="316.0" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="144.0">
                      <children>
                         <Button fx:id="botaoAlterar" layoutX="91.0" mnemonicParsing="false" onAction="#handleBotaoAlterar" prefHeight="25.0" prefWidth="70.0" text="Alterar" />
                         <Button fx:id="botaoCadastrar" mnemonicParsing="false" onAction="#handleBotaoCadastrar" prefHeight="25.0" prefWidth="70.0" text="Cadastrar" />

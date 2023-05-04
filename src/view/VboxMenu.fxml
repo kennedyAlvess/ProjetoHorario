@@ -18,7 +18,7 @@
           <Menu mnemonicParsing="false" text="Componentes curriculares">
             <items>
               <MenuItem fx:id="menuCadastrarCC" mnemonicParsing="false" text="Cadastrar" />
-                  <MenuItem fx:id="menuVisualizarCC" mnemonicParsing="false" text="Visualizar componentes curriculares" />
+                  <MenuItem fx:id="menuVisualizarCC" mnemonicParsing="false" onAction="#handleMenuCC" text="Visualizar componentes curriculares" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Turmas">
