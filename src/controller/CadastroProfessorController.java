@@ -102,7 +102,7 @@ public class CadastroProfessorController implements Initializable {
         if (TextFieldProfessorNome.getText() == null || TextFieldProfessorNome.getText().length() == 0) {
             errorMessage += "Nome inválido!\n";
         }
-        if (  TextFieldProfessorMat.getText() == null || TextFieldProfessorMat.getText().length() < 10 || !TextFieldProfessorMat.getText().matches("[0-9]*")) {
+        if (  TextFieldProfessorMat.getText() == null || TextFieldProfessorMat.getText().length() < 10 || TextFieldProfessorMat.getText().length() > 10 || !TextFieldProfessorMat.getText().matches("[0-9]*")) {
             errorMessage += "Matricula inválida! *Ex: 0123456789 *\n";  
         }
         if (TextFieldProfessorTitulo.getText() == null || TextFieldProfessorTitulo.getText().length() == 0) {
