@@ -6,7 +6,7 @@ public class Professor implements Serializable{
     private String nome;
     private String matricula;
     private String email;
-    private short cargaHorariaSemanal;
+    private int cargaHorariaSemanal;
     private String titulacao;
 
     public Professor() {
@@ -49,8 +49,8 @@ public class Professor implements Serializable{
         return cargaHorariaSemanal;
     }
 
-    public void setCargaHorariaSemanal(short cargaHorariaSemanal) {
-        this.cargaHorariaSemanal = cargaHorariaSemanal;
+    public void setCargaHorariaSemanal(int cargaHorariaSemanal) {
+        this.cargaHorariaSemanal += cargaHorariaSemanal;
     }
 
     public String getTitulacao() {
