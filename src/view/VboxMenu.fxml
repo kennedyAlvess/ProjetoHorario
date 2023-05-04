@@ -12,20 +12,19 @@
         <menus>
           <Menu mnemonicParsing="false" text="Professores">
             <items>
-              <MenuItem fx:id="menuCadastrarProfessores" mnemonicParsing="false" text="Cadastrar" />
-                  <MenuItem fx:id="menuListaProfessores" mnemonicParsing="false" onAction="#handleMenuCadastroProfessor" text="Lista" />
+                  <MenuItem fx:id="menuListaProfessores" mnemonicParsing="false" onAction="#handleMenuCadastroProfessor" text="Lista de professores" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Componentes curriculares">
             <items>
               <MenuItem fx:id="menuCadastrarCC" mnemonicParsing="false" text="Cadastrar" />
-                  <MenuItem fx:id="menuVisualizarCC" mnemonicParsing="false" text="Visualizar" />
+                  <MenuItem fx:id="menuVisualizarCC" mnemonicParsing="false" text="Visualizar componentes curriculares" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Turmas">
             <items>
               <MenuItem fx:id="menuCriarTurmas" mnemonicParsing="false" text="Criar" />
-                  <MenuItem fx:id="menuConsultarTurmas" mnemonicParsing="false" text="Consultar" />
+                  <MenuItem fx:id="menuConsultarTurmas" mnemonicParsing="false" text="Buscar" />
             </items>
           </Menu>
         </menus>

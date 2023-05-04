@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroProfessorController">
    <children>
       <GridPane layoutX="122.0" layoutY="101.0" prefHeight="200.0" prefWidth="357.0">
         <columnConstraints>
@@ -42,8 +41,8 @@
       </Label>
       <Group layoutX="224.0" layoutY="332.0" AnchorPane.leftAnchor="224.0" AnchorPane.rightAnchor="199.0">
          <children>
-            <Button fx:id="botaoConfirmar" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Confirmar" />
-            <Button fx:id="botaoCancelar" layoutX="107.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Cancelar" />
+            <Button fx:id="botaoConfirmar" mnemonicParsing="false" onAction="#handleBotaoConfirmar" prefHeight="25.0" prefWidth="70.0" text="Confirmar" />
+            <Button fx:id="botaoCancelar" layoutX="107.0" mnemonicParsing="false" onAction="#handleBotaoCancelar" prefHeight="25.0" prefWidth="70.0" text="Cancelar" />
          </children>
       </Group>
    </children>
