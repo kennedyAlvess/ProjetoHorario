@@ -68,15 +68,15 @@ public class ProfessorDAO {
     }
 
     public List<Professor> listar() {
-        String sql = "SELECT * FROM professores";
+        String sql = "Select * from professores";
         List<Professor> retorno = new ArrayList<>();
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             ResultSet resultado = stmt.executeQuery();
             while (resultado.next()) {
                 Professor Professor = new Professor();
-                Professor.setNome(resultado.getString("matricula"));
-                Professor.setMatricula(resultado.getInt("nome"));
+                Professor.setNome(resultado.getString("nome"));
+                Professor.setMatricula(resultado.getInt("matricula"));
                 Professor.setTitulacao(resultado.getString("titulacao"));
                 Professor.setEmail(resultado.getString("email"));
                 retorno.add(Professor);
