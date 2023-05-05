@@ -1,21 +1,23 @@
 package model.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Turma  implements Serializable{
     private String nome;
-    private short vagas;
+    private int vagas;
     private String horarios;
-    private short turma;
+    private int turma;
     private String periodo;
     private String codTurma;
-    private LinkedList<String> docentes;
+    private List<String> docentes;
 
 
 
-    public Turma(String[] docente,String nome, short vagas, String horarios, short turma, String periodo, String codTurma) {
+    public Turma(String[] docente,String nome, int vagas, String horarios, int turma, String periodo, String codTurma) {
         this.docentes = new LinkedList<>();
         this.nome = nome;
         this.vagas = vagas;
@@ -29,6 +31,7 @@ public class Turma  implements Serializable{
     }
 
     public Turma() {
+        this.docentes = new ArrayList<>();
     }
 
     public String getNome() {
@@ -48,11 +51,11 @@ public class Turma  implements Serializable{
         this.codTurma = codTurma;
     }
 
-    public short getVagas() {
+    public int getVagas() {
         return vagas;
     }
 
-    public void setVagas(short vagas) {
+    public void setVagas(int vagas) {
         this.vagas = vagas;
     }
 
@@ -64,11 +67,11 @@ public class Turma  implements Serializable{
         this.horarios = horarios;
     }
 
-    public short getTurma() {
+    public int getTurma() {
         return turma;
     }
 
-    public void setTurma(short turma) {
+    public void setTurma(int turma) {
         this.turma = turma;
     }
 
@@ -80,7 +83,7 @@ public class Turma  implements Serializable{
         this.periodo = periodo;
     }
 
-    public LinkedList<String> getDocentes() {
+    public List<String> getDocentes() {
         return docentes;
     }
 

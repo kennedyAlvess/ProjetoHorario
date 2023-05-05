@@ -46,4 +46,10 @@ public class MainController implements Initializable {
         anchorPane.getChildren().setAll(a);  
     }
 
+    public void handleMenuTurma() throws IOException{
+        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/TurmaMenu.fxml"));
+        anchorPane.getChildren().setAll(a);  
+    }
+
+
 }
