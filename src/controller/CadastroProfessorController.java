@@ -16,34 +16,24 @@ public class CadastroProfessorController implements Initializable {
 
     @FXML
     private TextField TextFieldProfessorEmail;
-
     @FXML
     private TextField TextFieldProfessorMat;
-
     @FXML
     private TextField TextFieldProfessorNome;
-
     @FXML
     private TextField TextFieldProfessorTitulo;
-
     @FXML
     private Button botaoCancelar;
-
     @FXML
     private Button botaoConfirmar;
-
     @FXML
     private Label labelTituloProfessor;
-
     @FXML
     private Label labelProfessorEmail;
-
     @FXML
     private Label labelProfessorMat;
-
     @FXML
     private Label labelProfessorNome;
-
     @FXML
     private Label labelProfessorTitulo;
     

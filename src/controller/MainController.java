@@ -6,11 +6,15 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 
+
+
 public class MainController implements Initializable {
- 
+    @FXML
+    private Menu menuHome;
     @FXML
     private MenuItem menuListaProfessores;
     @FXML
@@ -23,7 +27,7 @@ public class MainController implements Initializable {
     private MenuItem menuConsultarTurmas;
     @FXML
     private AnchorPane anchorPane;
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -41,6 +45,5 @@ public class MainController implements Initializable {
         AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/CCmenu.fxml"));
         anchorPane.getChildren().setAll(a);  
     }
-
 
 }

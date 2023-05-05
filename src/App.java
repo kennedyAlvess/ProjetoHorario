@@ -12,13 +12,13 @@ public class App extends Application{
     }
 
     @Override
-    public void start(Stage Stage) throws IOException {
-
+    public  void start(Stage Stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("view/VboxMenu.fxml"));
-        Scene tela = new Scene(root);
-        Stage.setScene(tela);
+        Scene home = new Scene(root);
+        Stage.setScene(home);
         Stage.setTitle("Melhor que o SIGAA");
         Stage.setResizable(false);
         Stage.show();
     }
+
 }

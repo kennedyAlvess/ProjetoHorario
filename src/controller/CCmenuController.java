@@ -30,30 +30,26 @@ public class CCmenuController implements Initializable{
 
     @FXML
     private Button botaoAlterarCC;
-
     @FXML
     private Button botaoCadastrarCC;
-
     @FXML
     private Button botaoRemoverCC;
-
     @FXML
     private TableColumn<ComponenteCurricular, String> colunaNomeCC;
-
     @FXML
     private Label labelCCcargahoraria;
-
     @FXML
     private Label labelCCnome;
-
     @FXML
     private Label labelCCobrigatoriedade;
-
     @FXML
     private Label labelCCsemestre;
-
     @FXML
     private TableView<ComponenteCurricular> tableViewCC;
+    @FXML
+    private Button botaoHome;
+    @FXML
+    private AnchorPane anchorPaneCC;
 
     //Listas para poder armazenar dados do banco de dados
     private List<ComponenteCurricular> listComponenteCurricular; 
@@ -140,6 +136,7 @@ public class CCmenuController implements Initializable{
             alert.show();
         }
     }
+
     
     //Carregando a interface de cadastro
     public boolean showCadastroCC(ComponenteCurricular componenteCurricular,String nome) throws IOException {

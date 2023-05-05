@@ -16,9 +16,9 @@
    <children>
       <SplitPane dividerPositions="0.30080213903743314" layoutX="173.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="381.0" prefWidth="201.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="381.0" prefWidth="200.0">
                <children>
-                  <TableView fx:id="tableViewCC" prefHeight="398.0" prefWidth="199.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="tableViewCC" prefHeight="398.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columns>
                         <TableColumn fx:id="colunaNomeCC" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="-1.0" sortType="DESCENDING" text="Nome" />
                      </columns>
@@ -28,9 +28,9 @@
                   </TableView>
                </children>
             </AnchorPane>
-            <AnchorPane minHeight="0.0" prefHeight="418.0" prefWidth="558.0" style="-fx-background-color: #E0FFFF; -fx-border-color: #000000;">
+            <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="520.0" style="-fx-background-color: #E0FFFF; -fx-border-color: #000000;">
                <children>
-                  <Label layoutX="100.0" layoutY="27.0" prefHeight="30.0" prefWidth="341.0" text="Detalhes do Componente Curricular" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="25.0">
+                  <Label layoutX="94.0" layoutY="27.0" prefHeight="30.0" prefWidth="344.0" text="Detalhes do Componente Curricular" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="26.0">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -56,7 +56,7 @@
                         <Label fx:id="labelCCsemestre" prefHeight="17.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
-                  <Group layoutX="145.0" layoutY="317.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="317.0">
+                  <Group layoutX="190.0" layoutY="318.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="122.0" AnchorPane.topAnchor="318.0">
                      <children>
                         <Button fx:id="botaoAlterarCC" layoutX="91.0" mnemonicParsing="false" onAction="#handleBotaoAlterarCC" prefHeight="25.0" prefWidth="70.0" text="Alterar" />
                         <Button fx:id="botaoCadastrarCC" mnemonicParsing="false" onAction="#handleBotaoCadastrarCC" prefHeight="25.0" prefWidth="70.0" text="Cadastrar" />

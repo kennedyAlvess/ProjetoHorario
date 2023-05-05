@@ -21,37 +21,26 @@ public class CadastroCCcontroller implements Initializable{
     /*Incluido todos os componentes criados na Interface Grafica como atributos na classe */
     @FXML
     private Label labelTituloCC;
-
     @FXML
     private ChoiceBox<String> choiceBoxCC;
-
     @FXML
     private TextField TextFieldCCcargahoraria;
-
     @FXML
     private TextField TextFieldCCcodigo;
-
     @FXML
     private TextField TextFieldCCnome;
-
     @FXML
     private TextField TextFieldCCsemestre;
-
     @FXML
     private Button botaoCCcancelar;
-
     @FXML
     private Button botaoCCconfirmar;
-
     @FXML
     private Label labelCCcargahoraria;
-
     @FXML
     private Label labelCCcodigo;
-
     @FXML
     private Label labelCCnome;
-
     @FXML
     private ChoiceBox<Integer> choiceBoxSemestre;
 
