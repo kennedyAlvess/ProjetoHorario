@@ -18,7 +18,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="381.0" prefWidth="200.0">
                <children>
-                  <TableView fx:id="tableViewProfessor" prefHeight="398.0" prefWidth="199.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="tableViewProfessor" layoutY="25.0" prefHeight="398.0" prefWidth="222.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn fx:id="colunaNomeProfessor" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="-1.0" sortType="DESCENDING" text="Nome" />
                     </columns>
@@ -28,7 +28,7 @@
                   </TableView>
                </children>
             </AnchorPane>
-          <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="520.0" style="-fx-background-color: #E0FFFF; -fx-border-color: #000000;">
+          <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="520.0" style="-fx-background-color: #E0FFFF;">
                <children>
                   <Label layoutX="152.0" layoutY="34.0" prefHeight="30.0" prefWidth="222.0" text="Detalhes do Professor" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="152.0" AnchorPane.topAnchor="25.0">
                      <font>

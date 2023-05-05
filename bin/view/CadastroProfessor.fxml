@@ -47,9 +47,9 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <ImageView fitHeight="123.0" fitWidth="240.0" layoutX="180.0" layoutY="73.0" pickOnBounds="true" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="73.0">
+      <ImageView fitHeight="123.0" fitWidth="240.0" layoutX="239.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="239.0" AnchorPane.rightAnchor="238.0" AnchorPane.topAnchor="74.0">
          <image>
-            <Image url="@../../../Imagens/professores.png" />
+            <Image url="@../../../Imagens/buscaprof.png" />
          </image>
       </ImageView>
    </children>

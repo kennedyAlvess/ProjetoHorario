@@ -2,16 +2,12 @@ package model.entidades;
 
 import java.io.Serializable;
 
-
-
 public class ComponenteCurricular implements Serializable {
     private String nome;
     private int cargaHoraria;
     private String codigo;
     private int semestre;
     private String obrigatoriedade;
-
- 
 
     public ComponenteCurricular() {
     }
@@ -23,8 +19,6 @@ public class ComponenteCurricular implements Serializable {
         this.cargaHoraria = cargaHoraria;
         this.codigo = codigo;
     }
-
-
 
     public int getSemestre() {
         return semestre;

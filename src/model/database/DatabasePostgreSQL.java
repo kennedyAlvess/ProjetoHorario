@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
- 
 public class DatabasePostgreSQL implements Database {
     private Connection connection;
 
@@ -16,7 +14,7 @@ public class DatabasePostgreSQL implements Database {
             this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDprojeto", "postgres","19738246");
             return this.connection;
         } catch (SQLException | ClassNotFoundException ex) {
-            System.out.println("Drive não encontrado ou erro na abertura na conexao com banco de dados");
+            System.out.println("Drive não encontrado ou erro na conexao com o banco de dados");
             return null;
         }
     }

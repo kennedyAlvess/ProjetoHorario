@@ -28,7 +28,7 @@
                   </TableView>
                </children>
             </AnchorPane>
-            <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="520.0" style="-fx-background-color: #E0FFFF; -fx-border-color: #000000;">
+            <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="520.0" style="-fx-background-color: #E0FFFF;">
                <children>
                   <Label layoutX="94.0" layoutY="27.0" prefHeight="30.0" prefWidth="344.0" text="Detalhes do Componente Curricular" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="26.0">
                      <font>
