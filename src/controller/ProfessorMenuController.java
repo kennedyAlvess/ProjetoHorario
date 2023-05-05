@@ -138,7 +138,7 @@ public class ProfessorMenuController implements Initializable{
         dialogStage.setTitle(nome);
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
- 
+        dialogStage.setResizable(false);
         // Setando o cliente no Controller.
         CadastroProfessorController controller = loader.getController();
         controller.setInteracao(dialogStage);

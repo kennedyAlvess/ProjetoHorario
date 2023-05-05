@@ -153,7 +153,7 @@ public class CCmenuController implements Initializable{
         dialogStage.setTitle(nome);
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
-
+        dialogStage.setResizable(false);
         // Setando o cliente no Controller.
         CadastroCCcontroller controller = loader.getController();
         controller.setInteracaoCC(dialogStage);

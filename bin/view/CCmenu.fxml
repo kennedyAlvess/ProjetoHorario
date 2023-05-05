@@ -18,7 +18,7 @@
          <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="381.0" prefWidth="201.0">
                <children>
-                  <TableView fx:id="tableViewCC" prefHeight="373.0" prefWidth="195.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="tableViewCC" prefHeight="398.0" prefWidth="199.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columns>
                         <TableColumn fx:id="colunaNomeCC" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="-1.0" sortType="DESCENDING" text="Nome" />
                      </columns>
@@ -28,7 +28,7 @@
                   </TableView>
                </children>
             </AnchorPane>
-            <AnchorPane minHeight="0.0" prefHeight="418.0" prefWidth="558.0">
+            <AnchorPane minHeight="0.0" prefHeight="418.0" prefWidth="558.0" style="-fx-background-color: #E0FFFF; -fx-border-color: #000000;">
                <children>
                   <Label layoutX="100.0" layoutY="27.0" prefHeight="30.0" prefWidth="341.0" text="Detalhes do Componente Curricular" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="25.0">
                      <font>
