@@ -40,7 +40,7 @@ public class ComponenteCurricularDAO {
     }
 
     public boolean alterar(ComponenteCurricular componentecurricular) {
-        String sql = "UPDATE componentecurriculares SET nomecc=?, cargahorariacc=?, semestre=?,obrigatoriedade=? WHERE codigo=?";
+        String sql = "UPDATE componentecurricular SET nomecc=?, cargahorariacc=?, semestre=?,obrigatoriedade=? WHERE codigo=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, componentecurricular.getNome());

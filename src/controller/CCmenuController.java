@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,15 +21,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import model.dao.ComponenteCurricularDAO;
-import model.dao.ProfessorDAO;
 import model.database.Database;
 import model.database.DatabasePostgreSQL;
 import model.entidades.ComponenteCurricular;
-import model.entidades.Professor;
+
 
 public class CCmenuController implements Initializable{
 
-  
+
     @FXML
     private Button botaoAlterarCC;
 
@@ -57,6 +55,7 @@ public class CCmenuController implements Initializable{
 
     @FXML
     private TableView<ComponenteCurricular> tableViewCC;
+
 
     private List<ComponenteCurricular> listComponenteCurricular; 
     private ObservableList<ComponenteCurricular> observableListComponenteCurricular;
@@ -95,69 +94,69 @@ public class CCmenuController implements Initializable{
 
     }
 
-    // @FXML
-    // public void handleBotaoCadastrar() throws IOException {
-    //     ComponenteCurricular componenteCurricular = new ComponenteCurricular();
-    //     boolean botaoConfirmarClicado = showCadastroCC(componenteCurricular);
-    //     if (botaoConfirmarClicado) {
-    //         componenteCurricularDAO.inserir(componenteCurricular);
-    //         carregarTableViewCC();
-    //     }
-    // }
+    @FXML
+    public void handleBotaoCadastrarCC() throws IOException {
+        ComponenteCurricular componenteCurricular = new ComponenteCurricular();
+        boolean botaoConfirmarClicado = showCadastroCC(componenteCurricular);
+        if (botaoConfirmarClicado) {
+            componenteCurricularDAO.inserir(componenteCurricular);
+            carregarTableViewCC();
+        }
+    }
 
-    // @FXML
-    // public void handleBotaoAlterar() throws IOException {
-    //     ComponenteCurricular componenteCurricular = tableViewCC.getSelectionModel().getSelectedItem();
-    //     if (componenteCurricular != null) {
-    //         boolean botaoConfirmarClicado = showCadastroProfessor(componenteCurricular);
-    //         if (botaoConfirmarClicado) {
-    //             componenteCurricularDAO.alterar(componenteCurricular);
-    //             carregarTableViewCC();
-    //         }
-    //     } else {
-    //         Alert alert = new Alert(Alert.AlertType.ERROR);
-    //         alert.setContentText("Por favor, escolha um Componente Curricular na Tabela!");
-    //         alert.show();
-    //     }
-    // }
+    @FXML
+    public void handleBotaoAlterarCC() throws IOException {
+        ComponenteCurricular componenteCurricular = tableViewCC.getSelectionModel().getSelectedItem();
+        if (componenteCurricular != null) {
+            boolean botaoConfirmarClicado = showCadastroCC(componenteCurricular);
+            if (botaoConfirmarClicado) {
+                componenteCurricularDAO.alterar(componenteCurricular);
+                carregarTableViewCC();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Por favor, escolha um Componente Curricular na Tabela!");
+            alert.show();
+        }
+    }
 
-    // @FXML
-    // public void handleButtonRemover() throws IOException {
-    //     ComponenteCurricular componenteCurricular = tableViewCC.getSelectionModel().getSelectedItem();
-    //     if (componenteCurricular != null) {
-    //         componenteCurricularDAO.remover(componenteCurricular);
-    //         carregarTableViewCC();
-    //         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-    //         alert.setContentText(componenteCurricular.getNome()+" REMOVIDO COM SUCESSO!");
-    //         alert.show();
-    //     } else {
-    //         Alert alert = new Alert(Alert.AlertType.ERROR);
-    //         alert.setContentText("Por favor, escolha um Componente Curricular na Tabela!");
-    //         alert.show();
-    //     }
-    // }
+    @FXML
+    public void handleBotaoRemoverCC() throws IOException {
+        ComponenteCurricular componenteCurricular = tableViewCC.getSelectionModel().getSelectedItem();
+        if (componenteCurricular != null) {
+            componenteCurricularDAO.remover(componenteCurricular);
+            carregarTableViewCC();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText(componenteCurricular.getNome()+" REMOVIDO COM SUCESSO!");
+            alert.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Por favor, escolha um Componente Curricular na Tabela!");
+            alert.show();
+        }
+    }
     
-    // public boolean showCadastroCC(ComponenteCurricular componenteCurricular) throws IOException {
-    //     FXMLLoader loader = new FXMLLoader();
-    //     loader.setLocation(CadastroProfessorController.class.getResource("/view/CadastroProfessor.fxml"));
-    //     AnchorPane page = (AnchorPane) loader.load();
+    public boolean showCadastroCC(ComponenteCurricular componenteCurricular) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(CadastroCCcontroller.class.getResource("/view/CadastroCC.fxml"));
+        AnchorPane page = (AnchorPane) loader.load();
 
-    //     // Criando um Estágio de Diálogo (Stage Dialog)
-    //     Stage dialogStage = new Stage();
-    //     dialogStage.setTitle("Cadastro de professor");
-    //     Scene scene = new Scene(page);
-    //     dialogStage.setScene(scene);
+        // Criando um Estágio de Diálogo (Stage Dialog)
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Cadastro de componente curricular");
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
 
-    //     // Setando o cliente no Controller.
-    //     CadastroProfessorController controller = loader.getController();
-    //     controller.setInteracao(dialogStage);
-    //     controller.set(componenteCurricular);
+        // Setando o cliente no Controller.
+        CadastroCCcontroller controller = loader.getController();
+        controller.setInteracaoCC(dialogStage);
+        controller.setCC(componenteCurricular);
 
-    //     // Mostra o Dialog e espera até que o usuário o feche
-    //     dialogStage.showAndWait();
+        // Mostra o Dialog e espera até que o usuário o feche
+        dialogStage.showAndWait();
 
-    //     return controller.isBotaoClicado();
-    // }
+        return controller.isBotaoClicadoCC();
+    }
 
 }
 
