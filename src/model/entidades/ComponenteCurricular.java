@@ -55,7 +55,7 @@ public class ComponenteCurricular implements Serializable {
     }
 
     public void setCargaHoraria(int cargaHoraria) {
-        this.cargaHoraria += cargaHoraria;
+        this.cargaHoraria = cargaHoraria;
     }
 
     public String getCodigo() {

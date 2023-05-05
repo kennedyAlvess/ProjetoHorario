@@ -27,7 +27,7 @@ import model.entidades.Professor;
 
 public class ProfessorMenuController implements Initializable{
 
-    /*Incluido todos os componentes criados na Interface Grafica como atributos na classe */
+
     @FXML
     private TableView<Professor> tableViewProfessor;
     @FXML
@@ -50,7 +50,6 @@ public class ProfessorMenuController implements Initializable{
     private List<Professor> listProfessores; 
     private ObservableList<Professor> observableListProfessores;
 
-    //Manipulando banco de dados
     private final Database database = new DatabasePostgreSQL();
     private final Connection connection = database.conectar();
     private final ProfessorDAO professorDAO = new ProfessorDAO();
@@ -62,6 +61,7 @@ public class ProfessorMenuController implements Initializable{
         tableViewProfessor.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue
         ) -> selecionarItemTableViewProfessor(newValue));
     }
+
     public void carregarTableViewProfessor(){
         colunaNomeProfessor.setCellValueFactory(new PropertyValueFactory<>("nome"));
         listProfessores = professorDAO.listar();
@@ -86,8 +86,9 @@ public class ProfessorMenuController implements Initializable{
 
     @FXML
     public void handleBotaoCadastrar() throws IOException {
+        final String nome1 = "CADASTRAR PROFESSOR";
         Professor professor = new Professor();
-        boolean botaoConfirmarClicado = showCadastroProfessor(professor);
+        boolean botaoConfirmarClicado = showCadastroProfessor(professor,nome1);
         if (botaoConfirmarClicado) {
             professorDAO.inserir(professor);
             carregarTableViewProfessor();
@@ -96,9 +97,10 @@ public class ProfessorMenuController implements Initializable{
 
     @FXML
     public void handleBotaoAlterar() throws IOException {
+        final String nome1 = "ALTERAR PROFESSOR";
         Professor professor = tableViewProfessor.getSelectionModel().getSelectedItem();
         if (professor != null) {
-            boolean botaoConfirmarClicado = showCadastroProfessor(professor);
+            boolean botaoConfirmarClicado = showCadastroProfessor(professor,nome1);
             if (botaoConfirmarClicado) {
                 professorDAO.alterar(professor);
                 carregarTableViewProfessor();
@@ -111,7 +113,7 @@ public class ProfessorMenuController implements Initializable{
     }
 
     @FXML
-    public void handleButtonRemover() throws IOException {
+    public void handleBotaoRemover() throws IOException {
         Professor professor = tableViewProfessor.getSelectionModel().getSelectedItem();
         if (professor != null) {
             professorDAO.remover(professor);
@@ -126,27 +128,26 @@ public class ProfessorMenuController implements Initializable{
         }
     }
     
-    public boolean showCadastroProfessor(Professor professor) throws IOException {
+    public boolean showCadastroProfessor(Professor professor,String nome) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(CadastroProfessorController.class.getResource("/view/CadastroProfessor.fxml"));
         AnchorPane page = (AnchorPane) loader.load();
 
         // Criando um Estágio de Diálogo (Stage Dialog)
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Cadastro de professor");
+        dialogStage.setTitle(nome);
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
-
+ 
         // Setando o cliente no Controller.
         CadastroProfessorController controller = loader.getController();
         controller.setInteracao(dialogStage);
         controller.setProfessor(professor);
-
+        controller.setLabelTituloProfessor(nome);
+        
         // Mostra o Dialog e espera até que o usuário o feche
         dialogStage.showAndWait();
 
         return controller.isBotaoClicado();
     }
-
-
 }

@@ -17,7 +17,7 @@ public class App extends Application{
         Parent root = FXMLLoader.load(getClass().getResource("view/VboxMenu.fxml"));
         Scene tela = new Scene(root);
         Stage.setScene(tela);
-        Stage.setTitle("Home");
+        Stage.setTitle("Melhor que o SIGAA");
         Stage.setResizable(false);
         Stage.show();
     }

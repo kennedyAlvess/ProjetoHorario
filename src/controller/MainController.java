@@ -29,6 +29,7 @@ public class MainController implements Initializable {
         
     }
 
+    //Atribuindo ações para os menus
     @FXML
     public void handleMenuCadastroProfessor() throws IOException{
         AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/ProfessorMenu.fxml"));

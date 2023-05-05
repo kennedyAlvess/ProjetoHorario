@@ -37,7 +37,7 @@
             <ChoiceBox fx:id="choiceBoxSemestre" prefHeight="25.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Label layoutX="104.0" layoutY="32.0" prefHeight="36.0" prefWidth="395.0" text="CADASTRAR COMPONENTE CURRICULAR" AnchorPane.leftAnchor="102.5" AnchorPane.rightAnchor="102.5">
+      <Label fx:id="labelTituloCC" layoutX="104.0" layoutY="32.0" prefHeight="36.0" prefWidth="395.0" text="CADASTRAR COMPONENTE CURRICULAR" AnchorPane.leftAnchor="102.5" AnchorPane.rightAnchor="102.5">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

@@ -28,7 +28,6 @@ import model.entidades.ComponenteCurricular;
 
 public class CCmenuController implements Initializable{
 
-
     @FXML
     private Button botaoAlterarCC;
 
@@ -56,22 +55,24 @@ public class CCmenuController implements Initializable{
     @FXML
     private TableView<ComponenteCurricular> tableViewCC;
 
-
+    //Listas para poder armazenar dados do banco de dados
     private List<ComponenteCurricular> listComponenteCurricular; 
     private ObservableList<ComponenteCurricular> observableListComponenteCurricular;
 
-    //Manipulando banco de dados
+    //Manipulando banco de dados, iniciando conexão
     private final Database database = new DatabasePostgreSQL();
     private final Connection connection = database.conectar();
     private final ComponenteCurricularDAO componenteCurricularDAO = new ComponenteCurricularDAO();
     
     @Override
     public void initialize(URL url, ResourceBundle resources) {
-        componenteCurricularDAO.setConnection(connection);
+        componenteCurricularDAO.setConnection(connection);//passando a conexão atual
         carregarTableViewCC();
         tableViewCC.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue
-        ) -> selecionarItemTableViewCC(newValue));
+        ) -> selecionarItemTableViewCC(newValue)); //Manipulando os dados na tela conforme é escolhido na lista
     }
+
+    //Setando os nomes dos componentes curriculares na coluna nome da interface grafica
     public void carregarTableViewCC(){
         colunaNomeCC.setCellValueFactory(new PropertyValueFactory<>("nome"));
         listComponenteCurricular = componenteCurricularDAO.listar();
@@ -79,6 +80,7 @@ public class CCmenuController implements Initializable{
         tableViewCC.setItems(observableListComponenteCurricular);
     }
     
+    //Armazenando os dados do componente curricular escolhido para poder mostrar na tela
     public void selecionarItemTableViewCC(ComponenteCurricular componenteCurricular){
         if (componenteCurricular != null) {
             labelCCnome.setText(componenteCurricular.getNome());
@@ -94,10 +96,12 @@ public class CCmenuController implements Initializable{
 
     }
 
+    //Implementação das ações dos botões
     @FXML
     public void handleBotaoCadastrarCC() throws IOException {
+        final String nome2 = "CADASTRAR COMPONENTE CURRICULAR";
         ComponenteCurricular componenteCurricular = new ComponenteCurricular();
-        boolean botaoConfirmarClicado = showCadastroCC(componenteCurricular);
+        boolean botaoConfirmarClicado = showCadastroCC(componenteCurricular,nome2);
         if (botaoConfirmarClicado) {
             componenteCurricularDAO.inserir(componenteCurricular);
             carregarTableViewCC();
@@ -107,8 +111,9 @@ public class CCmenuController implements Initializable{
     @FXML
     public void handleBotaoAlterarCC() throws IOException {
         ComponenteCurricular componenteCurricular = tableViewCC.getSelectionModel().getSelectedItem();
+        final String nome1 = "ALTERAR COMPONENTE CURRICULAR";
         if (componenteCurricular != null) {
-            boolean botaoConfirmarClicado = showCadastroCC(componenteCurricular);
+            boolean botaoConfirmarClicado = showCadastroCC(componenteCurricular,nome1);
             if (botaoConfirmarClicado) {
                 componenteCurricularDAO.alterar(componenteCurricular);
                 carregarTableViewCC();
@@ -136,14 +141,16 @@ public class CCmenuController implements Initializable{
         }
     }
     
-    public boolean showCadastroCC(ComponenteCurricular componenteCurricular) throws IOException {
+    //Carregando a interface de cadastro
+    public boolean showCadastroCC(ComponenteCurricular componenteCurricular,String nome) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(CadastroCCcontroller.class.getResource("/view/CadastroCC.fxml"));
         AnchorPane page = (AnchorPane) loader.load();
 
         // Criando um Estágio de Diálogo (Stage Dialog)
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Cadastro de componente curricular");
+
+        dialogStage.setTitle(nome);
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
 
@@ -151,6 +158,7 @@ public class CCmenuController implements Initializable{
         CadastroCCcontroller controller = loader.getController();
         controller.setInteracaoCC(dialogStage);
         controller.setCC(componenteCurricular);
+        controller.setLabelTituloCC(nome);
 
         // Mostra o Dialog e espera até que o usuário o feche
         dialogStage.showAndWait();

@@ -13,6 +13,7 @@ import model.entidades.Professor;
 
 
 public class CadastroProfessorController implements Initializable {
+
     @FXML
     private TextField TextFieldProfessorEmail;
 
@@ -32,6 +33,9 @@ public class CadastroProfessorController implements Initializable {
     private Button botaoConfirmar;
 
     @FXML
+    private Label labelTituloProfessor;
+
+    @FXML
     private Label labelProfessorEmail;
 
     @FXML
@@ -49,9 +53,8 @@ public class CadastroProfessorController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+     
     }
-
 
     @FXML
     public void handleBotaoConfirmar(){
@@ -60,7 +63,6 @@ public class CadastroProfessorController implements Initializable {
             professor.setMatricula(TextFieldProfessorMat.getText());
             professor.setTitulacao(TextFieldProfessorTitulo.getText());
             professor.setEmail(TextFieldProfessorEmail.getText());
-            
             botaoConfirmarClicado = true;
             interacao.close();
         }
@@ -71,22 +73,6 @@ public class CadastroProfessorController implements Initializable {
         interacao.close();
     }
 
-    public Stage getInteracao() {
-        return interacao;
-    }
-    public void setInteracao(Stage interacao) {
-        this.interacao = interacao;
-    }
-    public boolean isBotaoClicado() {
-        return botaoConfirmarClicado;
-    }
-    public void setBotaoClicado(boolean botaoClicado) {
-        this.botaoConfirmarClicado = botaoClicado;
-    }
-    public Professor getProfessor() {
-        return professor;
-    }
-    
     public void setProfessor(Professor professor) {
         this.professor = professor;
         this.TextFieldProfessorNome.setText(professor.getNome());
@@ -97,8 +83,6 @@ public class CadastroProfessorController implements Initializable {
 
     private boolean validarEntradaDeDados() {
         String errorMessage = "";
-
-
         if (TextFieldProfessorNome.getText() == null || TextFieldProfessorNome.getText().length() == 0) {
             errorMessage += "Nome inválido!\n";
         }
@@ -123,6 +107,27 @@ public class CadastroProfessorController implements Initializable {
             alert.show();
             return false;
         }
+    }
+
+
+    public void setLabelTituloProfessor(String titulo) {
+        this.labelTituloProfessor.setText(titulo);
+    }
+
+    public Stage getInteracao() {
+        return interacao;
+    }
+    public void setInteracao(Stage interacao) {
+        this.interacao = interacao;
+    }
+    public boolean isBotaoClicado() {
+        return botaoConfirmarClicado;
+    }
+    public void setBotaoClicado(boolean botaoClicado) {
+        this.botaoConfirmarClicado = botaoClicado;
+    }
+    public Professor getProfessor() {
+        return professor;
     }
 
 }

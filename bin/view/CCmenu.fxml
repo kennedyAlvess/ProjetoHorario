@@ -30,7 +30,7 @@
             </AnchorPane>
             <AnchorPane minHeight="0.0" prefHeight="418.0" prefWidth="558.0">
                <children>
-                  <Label layoutX="230.0" layoutY="22.0" text="Detalhes" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="229.0" AnchorPane.topAnchor="22.0">
+                  <Label layoutX="100.0" layoutY="27.0" prefHeight="30.0" prefWidth="341.0" text="Detalhes do Componente Curricular" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="25.0">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>

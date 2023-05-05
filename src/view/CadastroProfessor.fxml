@@ -34,16 +34,16 @@
             <TextField fx:id="TextFieldProfessorEmail" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Label layoutX="233.0" layoutY="32.0" prefHeight="30.0" prefWidth="240.0" text="CADASTRAR PROFESSOR" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="180.0">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
       <Group layoutX="224.0" layoutY="340.0" AnchorPane.leftAnchor="224.0" AnchorPane.rightAnchor="199.0">
          <children>
             <Button fx:id="botaoConfirmar" mnemonicParsing="false" onAction="#handleBotaoConfirmar" prefHeight="25.0" prefWidth="70.0" text="Confirmar" />
             <Button fx:id="botaoCancelar" layoutX="107.0" mnemonicParsing="false" onAction="#handleBotaoCancelar" prefHeight="25.0" prefWidth="70.0" text="Cancelar" />
          </children>
       </Group>
+      <Label fx:id="labelTituloProfessor" layoutX="233.0" layoutY="32.0" prefHeight="30.0" prefWidth="240.0" text="CADASTRAR PROFESSOR" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="180.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
