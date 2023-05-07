@@ -26,7 +26,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Turmas">
             <items>
-              <MenuItem fx:id="menuCriarTurmas" mnemonicParsing="false" text="Criar" />
+              <MenuItem fx:id="menuBuscarTurmas" mnemonicParsing="false" text="Buscar" />
                   <MenuItem fx:id="menuConsultarTurmas" mnemonicParsing="false" onAction="#handleMenuTurma" text="Listar" />
             </items>
           </Menu>

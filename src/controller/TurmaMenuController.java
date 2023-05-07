@@ -1,20 +1,24 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.dao.TurmasDAO;
 import model.database.Database;
 import model.database.DatabasePostgreSQL;
@@ -54,6 +58,7 @@ public class TurmaMenuController implements Initializable{
     @FXML
     private Label labelTurmaNome;
 
+
    //Listas para poder armazenar dados do banco de dados
    private List<Turma> listTurma; 
    private ObservableList<Turma> observableListTurma;
@@ -83,8 +88,8 @@ public class TurmaMenuController implements Initializable{
    public void selecionarItemTableViewTurma(Turma Turma){
        if (Turma != null) {
            labelTurmaNome.setText(Turma.getNome());
-           labelCodTurma.setText(String.valueOf(Turma.getCodTurma()));
-           //labelTurmaDocente.setText(String.valueOf(Turma.getDocentes()));
+           labelCodTurma.setText(Turma.getCodTurma());
+           labelTurmaDocente.setText(Turma.getDocente());
            labelTurmaVagas.setText(String.valueOf(Turma.getVagas()));       
            labelTurmaTurma.setText(String.valueOf(Turma.getTurma()));  
            labelTurmaPeriodo.setText(Turma.getPeriodo());   
@@ -96,7 +101,74 @@ public class TurmaMenuController implements Initializable{
         labelTurmaTurma.setText("");  
         labelTurmaPeriodo.setText("");   
        }
-
    }
+
+       //Implementação das ações dos botões
+       @FXML
+       public void handleBotaoCadastrarCC() throws IOException {
+           final String nome = "CADASTRAR TURMA";
+           Turma turma = new Turma();
+           boolean botaoConfirmarClicado = showCadastroTurma(turma,nome);
+           if (botaoConfirmarClicado) {
+               turmaDAO.inserir(turma);
+               carregarTableViewTurma();
+           }
+       }
+   
+       @FXML
+       public void handleBotaoAlterarCC() throws IOException {
+           Turma turma = tableViewTurma.getSelectionModel().getSelectedItem();
+           final String nome1 = "ALTERAR TURMA";
+           if (turma != null) {
+               boolean botaoConfirmarClicado = showCadastroTurma(turma,nome1);
+               if (botaoConfirmarClicado) {
+                   turmaDAO.alterar(turma);
+                   carregarTableViewTurma();
+               }
+           } else {
+               Alert alert = new Alert(Alert.AlertType.ERROR);
+               alert.setContentText("Por favor, escolha um Componente Curricular na Tabela!");
+               alert.show();
+           }
+       }
+   
+       @FXML
+       public void handleBotaoRemoverTurma() throws IOException {
+           Turma turma = tableViewTurma.getSelectionModel().getSelectedItem();
+           if (turma != null) {
+               turmaDAO.remover(turma);
+               carregarTableViewTurma();
+               Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+               alert.setContentText("TURMA "+turma.getNome()+" REMOVIDA COM SUCESSO!");
+               alert.show();
+           } else {
+               Alert alert = new Alert(Alert.AlertType.ERROR);
+               alert.setContentText("Por favor, escolha uma turma na Tabela!");
+               alert.show();
+           }
+       }
+
+       public boolean showCadastroTurma(Turma professor,String nome) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(CadastroTurmaController.class.getResource("/view/CadastroTurma.fxml"));
+        AnchorPane page = (AnchorPane) loader.load();
+
+        // Criando um Estágio de Diálogo (Stage Dialog)
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle(nome);
+        Scene scene = new Scene(page);
+        dialogStage.setScene(scene);
+        dialogStage.setResizable(false);
+        // Setando o cliente no Controller.
+        CadastroTurmaController controller = loader.getController();
+        controller.setInteracao(dialogStage);
+        controller.setTurma(professor);
+        controller.setLabelTituloTurma(nome);
+        
+        // Mostra o Dialog e espera até que o usuário o feche
+        dialogStage.showAndWait();
+
+        return controller.isBotaoClicado();
+    }
     
 }

@@ -1,10 +1,6 @@
 package model.entidades;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Turma  implements Serializable{
     private String nome;
@@ -13,25 +9,24 @@ public class Turma  implements Serializable{
     private int turma;
     private String periodo;
     private String codTurma;
-    private List<String> docentes;
+    private String docente;
+    private int semestre;
 
 
 
-    public Turma(String[] docente,String nome, int vagas, String horarios, int turma, String periodo, String codTurma) {
-        this.docentes = new LinkedList<>();
+    public Turma(int semestre,String docente,String nome, int vagas, String horarios, int turma, String periodo, String codTurma) {
+        this.docente = docente;
         this.nome = nome;
         this.vagas = vagas;
         this.horarios = horarios;
         this.turma = turma;
         this.periodo = periodo;
         this.codTurma = codTurma;
-        for (int i = 0; i < docente.length; i++) {
-            adicionarDocente(docente[i]);
-        }
+        this.semestre = semestre;
     }
 
     public Turma() {
-        this.docentes = new ArrayList<>();
+
     }
 
     public String getNome() {
@@ -83,22 +78,20 @@ public class Turma  implements Serializable{
         this.periodo = periodo;
     }
 
-    public List<String> getDocentes() {
-        return docentes;
+    public String getDocente() {
+        return docente;
     }
 
-    public void removerDocente(String docente){
-        Iterator<String> iteratorDocente = docentes.iterator();
-        while(iteratorDocente.hasNext()){
-            if(iteratorDocente.next() == docente ){
-                iteratorDocente.remove();
-                break;
-            }
-        }
+    public void setDocente(String docente) {
+        this.docente = docente;
     }
 
-    public void adicionarDocente(String docente){
-        this.docentes.add(docente);
+    public int getSemestre() {
+        return semestre;
+    }
+
+    public void setSemestre(int semestre) {
+        this.semestre = semestre;
     }
 
 }
