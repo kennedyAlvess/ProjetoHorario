@@ -15,14 +15,18 @@ import javafx.stage.Stage;
 
 import model.entidades.ComponenteCurricular;
 
+/**
+ * Classe utilizada para controlar a busca de turmas por professor ou semestre.
+ * 
+ */
 
 public class CadastroCCcontroller implements Initializable{
     
-    /*Incluido todos os componentes criados na Interface Grafica como atributos na classe */
-    @FXML
-    private Label labelTituloCC;
+    //Incluido todos os componentes criados na Interface Grafica como atributos na classe 
     @FXML
     private ChoiceBox<String> choiceBoxCC;
+    @FXML
+    private ChoiceBox<Integer> choiceBoxSemestre;
     @FXML
     private TextField TextFieldCCcargahoraria;
     @FXML
@@ -42,8 +46,9 @@ public class CadastroCCcontroller implements Initializable{
     @FXML
     private Label labelCCnome;
     @FXML
-    private ChoiceBox<Integer> choiceBoxSemestre;
+    private Label labelTituloCC;
 
+    
     private Stage interacao;
     private boolean botaoConfirmarClicadoCC;
     private ComponenteCurricular componenteCurricular;
@@ -59,7 +64,10 @@ public class CadastroCCcontroller implements Initializable{
         choiceBoxCC.setItems(choiceBoxList);
     }
 
-    //Ações atribuidas aos botões da interface
+    /**
+     * Metodos para confirmar uma ação de cadastro ou alteração 
+     *{@link #handleBotaoConfirmarCC()}}
+     */
     @FXML
     public void handleBotaoConfirmarCC(){ 
         if (validarEntradaDeDadosCC()) {
@@ -78,7 +86,11 @@ public class CadastroCCcontroller implements Initializable{
         interacao.close();
     }
 
-    //Metodo usado para poder repassar o componente curricular para que possa ser atualizado caso confirme a ação
+    /**
+     *Metodo usado para repassar o componente curricular a interação atual,
+     para que possa ser atualizado caso confirme a ação.
+     @see CCmenuController#showCadastroCC(ComponenteCurricular componenteCurricular,String nome)
+       */ 
     public void setCC(ComponenteCurricular componenteCurricular) {
         this.componenteCurricular = componenteCurricular;
         this.TextFieldCCnome.setText(componenteCurricular.getNome());
@@ -113,23 +125,17 @@ public class CadastroCCcontroller implements Initializable{
         }
     }
 
-    //Gets e Setts utilizados para manipulação dos dados em outra classe
+    /**
+     * Gets e Setts utilizados para manipulação dos dados em outra classe
+     * @see CCmenuController#showCadastroCC(ComponenteCurricular componenteCurricular,String nome) */
+
     public void setLabelTituloCC(String titulo) {
         this.labelTituloCC.setText(titulo);
-    }
-    public Stage getInteracaoCC() {
-        return interacao;
     }
     public void setInteracaoCC(Stage interacao) {
         this.interacao = interacao;
     }
     public boolean isBotaoClicadoCC() {
         return botaoConfirmarClicadoCC;
-    }
-    public void setBotaoClicadoCC(boolean botaoClicado) {
-        this.botaoConfirmarClicadoCC = botaoClicado;
-    }
-    public ComponenteCurricular getComponenteCurricular() {
-        return componenteCurricular;
     }
 }

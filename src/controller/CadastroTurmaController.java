@@ -17,34 +17,24 @@ public class CadastroTurmaController implements Initializable{
 
     @FXML
     private TextField TextFieldTurmaCodigo;
-
     @FXML
     private TextField TextFieldTurmaDocente;
-
     @FXML
     private TextField TextFieldTurmaNome;
-
     @FXML
     private TextField TextFieldTurmaHorario;
-
     @FXML
     private TextField TextFieldTurmaPeriodo;
-
     @FXML
     private TextField TextFieldTurmaTurma;
-
     @FXML
     private TextField TextFieldTurmaVagas;
-
     @FXML
     private Button botaoCancelar;
-
     @FXML
     private Button botaoConfirmar;
-
     @FXML
     private Label labelTituloTurma;
-
 
     private Stage interacao;
     private boolean botaoConfirmarClicado;
@@ -69,12 +59,10 @@ public class CadastroTurmaController implements Initializable{
             interacao.close();
         }
     }
-
     @FXML
     public void handleBotaoCancelar(){
         interacao.close();
     }
-
     public void setTurma(Turma turma) {
         this.turma = turma;
         this.TextFieldTurmaNome.setText(turma.getNome());
@@ -83,8 +71,7 @@ public class CadastroTurmaController implements Initializable{
         this.TextFieldTurmaHorario.setText(turma.getHorarios());
         this.TextFieldTurmaTurma.setText(String.valueOf(turma.getTurma()));
         this.TextFieldTurmaVagas.setText(String.valueOf(turma.getVagas()));
-        this.TextFieldTurmaPeriodo.setText(turma.getPeriodo());
-        
+        this.TextFieldTurmaPeriodo.setText(turma.getPeriodo());   
     }
 
     private boolean validarEntradaDeDados() {
@@ -124,7 +111,6 @@ public class CadastroTurmaController implements Initializable{
     public void setLabelTituloTurma(String titulo) {
         this.labelTituloTurma.setText(titulo);
     }
-
     public Stage getInteracao() {
         return interacao;
     }
@@ -140,8 +126,5 @@ public class CadastroTurmaController implements Initializable{
     public Turma getTurma() {
         return turma;
     }
-
-
-
 }
 

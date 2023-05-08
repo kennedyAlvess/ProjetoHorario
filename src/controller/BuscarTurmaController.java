@@ -4,7 +4,6 @@ import java.net.URL;
 import java.sql.Connection;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,6 +14,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
 import model.dao.TurmasDAO;
 import model.database.Database;
 import model.database.DatabasePostgreSQL;
@@ -24,307 +24,216 @@ public class BuscarTurmaController implements Initializable {
 
     @FXML
     private Label labe4M1;
-
     @FXML
     private Label labe4M2;
-
     @FXML
     private Label labe4M3;
-
     @FXML
     private Label labe4M4;
-
     @FXML
     private Label labe4M5;
-
     @FXML
     private Label labe4M6;
-
     @FXML
     private Label labe4N1;
-
     @FXML
     private Label labe4N2;
-
     @FXML
     private Label labe4N3;
-
     @FXML
     private Label labe4N4;
-
     @FXML
     private Label labe4T1;
-
     @FXML
     private Label labe4T2;
-
     @FXML
     private Label labe4T3;
-
     @FXML
     private Label labe4T4;
-
     @FXML
     private Label labe4T5;
-
     @FXML
     private Label labe4T6;
-
     @FXML
     private Label labe5N1;
-
     @FXML
     private Label labe5N2;
-
     @FXML
     private Label labe5N3;
-
     @FXML
     private Label labe5N4;
-
     @FXML
     private Label label2M1;
-
     @FXML
     private Label label2M2;
-
     @FXML
     private Label label2M3;
-
     @FXML
     private Label label2M4;
-
     @FXML
     private Label label2M5;
-
     @FXML
     private Label label2M6;
-
     @FXML
     private Label label2N1;
-
     @FXML
     private Label label2N2;
-
     @FXML
     private Label label2N3;
-
     @FXML
     private Label label2N4;
-
     @FXML
     private Label label2T1;
-
     @FXML
     private Label label2T2;
-
     @FXML
     private Label label2T3;
-
     @FXML
     private Label label2T4;
-
     @FXML
     private Label label2T5;
-
     @FXML
     private Label label2T6;
-
     @FXML
     private Label label3M1;
-
     @FXML
     private Label label3M2;
-
     @FXML
     private Label label3M3;
-
     @FXML
     private Label label3M4;
-
     @FXML
     private Label label3M5;
-
     @FXML
     private Label label3M6;
-
     @FXML
     private Label label3N1;
-
     @FXML
     private Label label3N2;
-
     @FXML
     private Label label3N3;
-
     @FXML
     private Label label3N4;
-
     @FXML
     private Label label3T1;
-
     @FXML
     private Label label3T2;
-
     @FXML
     private Label label3T3;
-
     @FXML
     private Label label3T4;
-
     @FXML
     private Label label3T5;
-
     @FXML
     private Label label3T6;
-
     @FXML
     private Label label5M1;
-
     @FXML
     private Label label5M2;
-
     @FXML
     private Label label5M3;
-
     @FXML
     private Label label5M4;
-
     @FXML
     private Label label5M5;
-
     @FXML
     private Label label5M6;
-
     @FXML
     private Label label5T1;
-
     @FXML
     private Label label5T2;
-
     @FXML
     private Label label5T3;
-
     @FXML
     private Label label5T4;
-
     @FXML
     private Label label5T5;
-
     @FXML
     private Label label5T6;
-
     @FXML
     private Label label6M1;
-
     @FXML
     private Label label6M2;
-
     @FXML
     private Label label6M3;
-
     @FXML
     private Label label6M4;
-
     @FXML
     private Label label6M5;
-
     @FXML
     private Label label6M6;
-
     @FXML
     private Label label6N1;
-
     @FXML
     private Label label6N2;
-
     @FXML
     private Label label6N3;
-
     @FXML
     private Label label6N4;
-
     @FXML
     private Label label6T1;
-
     @FXML
     private Label label6T2;
-
     @FXML
     private Label label6T3;
-
     @FXML
     private Label label6T4;
-
     @FXML
     private Label label6T5;
-
     @FXML
     private Label label6T6;
-
     @FXML
     private Label label7M1;
-
     @FXML
     private Label label7M2;
-
     @FXML
     private Label label7M3;
-
     @FXML
     private Label label7M4;
-
     @FXML
     private Label label7M5;
-
     @FXML
     private Label label7M6;
-
     @FXML
     private Label label7N1;
-
     @FXML
     private Label label7N2;
-
     @FXML
     private Label label7N3;
-
     @FXML
     private Label label7N4;
-
     @FXML
     private Label label7T1;
-
     @FXML
     private Label label7T2;
-
     @FXML
     private Label label7T3;
-
     @FXML
     private Label label7T4;
-
     @FXML
     private Label label7T5;
-
     @FXML
     private Label label7T6;
-
     @FXML
     private ChoiceBox<String> choiceBoxBuscar;
-
     @FXML
     private Button botaoPesquisar;
-
     @FXML
     private TextField TextFieldBuscar;
+    @FXML
+    private Button botaoVoltarBuscar;
 
     private Stage interacao;
-    private boolean botaoBuscarClicado;
-    private Turma turma;
+
+    /**
+     * Classes utilizadas para se conectar ao banco de dados
+     * @see model.database.Database
+     * @see model.database.DatabasePostgreSQL#conectar
+     */
     private final TurmasDAO turmaDAO = new TurmasDAO();
     private final Database database = new DatabasePostgreSQL();
     private final Connection connection = database.conectar();
+
     // Preenchendo os ChoiceBox da interface gráfica
     private List<Turma> listHorarios;
     private ObservableList<String> choiceBoxBuscarList = FXCollections.observableArrayList("Todos","1", "2", "3", "4", "5", "6");
@@ -335,9 +244,11 @@ public class BuscarTurmaController implements Initializable {
         choiceBoxBuscar.setItems(choiceBoxBuscarList);
         choiceBoxBuscar.setValue("Todos");
     }
-    public void setTurma(Turma turma) {
-        this.turma = turma;
-    }
+
+    /**
+     * Metodo para preencher a tabela de horários das turmas
+     *@see #limparTelaHorario
+     */
     public void handleBotaoPesquisar() {
         limparTelaHorario();
         if(TextFieldBuscar.getText() != null && choiceBoxBuscar.getValue() == "Todos"){
@@ -3018,21 +2929,17 @@ public class BuscarTurmaController implements Initializable {
             alert.show();
         }
     }
-    public Stage getInteracao() {
-        return interacao;
+
+    @FXML
+    public void handleBotaoVoltar(){
+        interacao.close();
     }
     public void setInteracao(Stage interacao) {
         this.interacao = interacao;
     }
-    public boolean isBotaoBuscarClicado() {
-        return botaoBuscarClicado;
-    }
-    public void setBotaoBustarClicado(boolean botaoBuscarClicado) {
-        this.botaoBuscarClicado = botaoBuscarClicado;
-    }
-    public Turma getTurma() {
-        return turma;
-    }
+
+    /*Metodo para limpar os campos do horário para um nova consulta
+     */
     public void limparTelaHorario() {
         // Limpando a tabela de horario da segunda
         label2M1.setText("");

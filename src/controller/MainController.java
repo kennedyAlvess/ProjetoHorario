@@ -11,9 +11,6 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 
-
-
-
 public class MainController implements Initializable {
     @FXML
     private Menu menuHome;
@@ -35,19 +32,23 @@ public class MainController implements Initializable {
         
     }
 
-    //Atribuindo ações para os menus
+    /**
+     * Metodos das ações destinadas aos botões da tela inicial do aplicativo
+     * {@link #handleMenuCC()}
+     * {@link #handleMenuCadastroProfessor()}
+     * {@link #handleMenuTurma()}
+     * @throws IOException
+     */
     @FXML
     public void handleMenuCadastroProfessor() throws IOException{
         AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/ProfessorMenu.fxml"));
         anchorPane.getChildren().setAll(a);
     }
-
     @FXML
     public void handleMenuCC() throws IOException{
         AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/CCmenu.fxml"));
         anchorPane.getChildren().setAll(a);  
     }
-
     public void handleMenuTurma() throws IOException{
         AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/TurmaMenu.fxml"));
         anchorPane.getChildren().setAll(a);  

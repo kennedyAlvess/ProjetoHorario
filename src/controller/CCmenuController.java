@@ -92,7 +92,13 @@ public class CCmenuController implements Initializable{
 
     }
 
-    //Implementação das ações dos botões
+    /**
+     * Metodos para chamar a tela de cadastro
+     * {@link #handleBotaoCadastrarCC()}
+     * {@link #handleBotaoAlterarCC()}
+     * @see #showCadastroCC(ComponenteCurricular, String)
+     * @throws IOException
+     */
     @FXML
     public void handleBotaoCadastrarCC() throws IOException {
         final String nome2 = "CADASTRAR COMPONENTE CURRICULAR";
@@ -103,7 +109,6 @@ public class CCmenuController implements Initializable{
             carregarTableViewCC();
         }
     }
-
     @FXML
     public void handleBotaoAlterarCC() throws IOException {
         ComponenteCurricular componenteCurricular = tableViewCC.getSelectionModel().getSelectedItem();
@@ -120,7 +125,10 @@ public class CCmenuController implements Initializable{
             alert.show();
         }
     }
-
+    /**
+     * Metodo para remover
+     * @throws IOException
+     */
     @FXML
     public void handleBotaoRemoverCC() throws IOException {
         ComponenteCurricular componenteCurricular = tableViewCC.getSelectionModel().getSelectedItem();
@@ -138,7 +146,13 @@ public class CCmenuController implements Initializable{
     }
 
     
-    //Carregando a interface de cadastro
+    /**
+     * Carregando a interface de cadastro
+     * @param componenteCurricular
+     * @param nome Usado para mudar o titulo da tela
+     * @return A confirmação do botão confirmar ou cancelar
+     * @throws IOException
+     */
     public boolean showCadastroCC(ComponenteCurricular componenteCurricular,String nome) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(CadastroCCcontroller.class.getResource("/view/CadastroCC.fxml"));
@@ -159,7 +173,6 @@ public class CCmenuController implements Initializable{
 
         // Mostra o Dialog e espera até que o usuário o feche
         dialogStage.showAndWait();
-
         return controller.isBotaoClicadoCC();
     }
 

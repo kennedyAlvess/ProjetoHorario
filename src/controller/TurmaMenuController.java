@@ -25,49 +25,37 @@ import model.database.DatabasePostgreSQL;
 import model.entidades.Turma;
 
 public class TurmaMenuController implements Initializable {
+
     @FXML
     private Button botaoAlterarCC;
-
     @FXML
     private Button botaoCadastrarCC;
-
     @FXML
     private Button botaoRemoverCC;
-
     @FXML
     private TableColumn<Turma, String> colunaNomeTurma;
-
     @FXML
     private Label labelCodTurma;
-
     @FXML
     private Label labelTurmaDocente;
-
     @FXML
     private Label labelTurmaPeriodo;
-
     @FXML
     private Label labelTurmaTurma;
-
     @FXML
     private Label labelTurmaVagas;
-
     @FXML
     private TableView<Turma> tableViewTurma;
-
     @FXML
     private Label labelTurmaNome;
-
     @FXML
     private Label labelTurmaHorario;
     @FXML
     private Button botaoBuscar;
 
-    // Listas para poder armazenar dados do banco de dados
     private List<Turma> listTurma;
     private ObservableList<Turma> observableListTurma;
 
-    // Manipulando banco de dados, iniciando conexão
     private final Database database = new DatabasePostgreSQL();
     private final Connection connection = database.conectar();
     private final TurmasDAO turmaDAO = new TurmasDAO();
@@ -80,8 +68,6 @@ public class TurmaMenuController implements Initializable {
                 .addListener((observable, oldValue, newValue) -> selecionarItemTableViewTurma(newValue)); // Manipulando na lista
     }
 
-    // Setando os nomes dos componentes curriculares na coluna nome da interface
-    // grafica
     public void carregarTableViewTurma() {
         colunaNomeTurma.setCellValueFactory(new PropertyValueFactory<>("nome"));
         listTurma = turmaDAO.listar();
@@ -89,8 +75,6 @@ public class TurmaMenuController implements Initializable {
         tableViewTurma.setItems(observableListTurma);
     }
 
-    // Armazenando os dados do componente curricular escolhido para poder mostrar na
-    // tela
     public void selecionarItemTableViewTurma(Turma Turma) {
         if (Turma != null) {
             labelTurmaNome.setText(Turma.getNome());
@@ -111,7 +95,6 @@ public class TurmaMenuController implements Initializable {
         }
     }
 
-    // Implementação das ações dos botões
     @FXML
     public void handleBotaoCadastrarCC() throws IOException {
         String nome = "CADASTRAR TURMA";
@@ -156,12 +139,16 @@ public class TurmaMenuController implements Initializable {
         }
     }
 
+    /**
+     * Ação do botão buscar, mostra a tela de busca 
+     * @see BuscarTurmaController
+     * @throws IOException
+     */
     public void handleBotaoBuscar() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(CadastroCCcontroller.class.getResource("/view/BuscarTurma.fxml"));
         AnchorPane page = (AnchorPane) loader.load();
 
-        // Criando um Estágio de Diálogo (Stage Dialog)
         Stage dialogStage = new Stage();
         Scene scene = new Scene(page);
 
@@ -169,10 +156,9 @@ public class TurmaMenuController implements Initializable {
         dialogStage.setScene(scene);
         dialogStage.setResizable(false);
 
-        // Setando o cliente no Controller.
         BuscarTurmaController controller = loader.getController();
         controller.setInteracao(dialogStage);
-        // Mostra o Dialog e espera até que o usuário o feche
+    
         dialogStage.showAndWait();
 
     }
@@ -182,22 +168,19 @@ public class TurmaMenuController implements Initializable {
         loader.setLocation(CadastroTurmaController.class.getResource("/view/CadastroTurma.fxml"));
         AnchorPane page = (AnchorPane) loader.load();
 
-        // Criando um Estágio de Diálogo (Stage Dialog)
         Stage dialogStage = new Stage();
         dialogStage.setTitle(nome);
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
         dialogStage.setResizable(false);
-        // Setando o cliente no Controller.
+
         CadastroTurmaController controller = loader.getController();
         controller.setInteracao(dialogStage);
         controller.setTurma(turma);
         controller.setLabelTituloTurma(nome);
 
-        // Mostra o Dialog e espera até que o usuário o feche
         dialogStage.showAndWait();
 
         return controller.isBotaoClicado();
     }
-
 }

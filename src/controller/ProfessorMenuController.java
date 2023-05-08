@@ -27,7 +27,6 @@ import model.entidades.Professor;
 
 public class ProfessorMenuController implements Initializable{
 
-
     @FXML
     private TableView<Professor> tableViewProfessor;
     @FXML
@@ -86,9 +85,9 @@ public class ProfessorMenuController implements Initializable{
 
     @FXML
     public void handleBotaoCadastrar() throws IOException {
-        final String nome1 = "CADASTRAR PROFESSOR";
+        final String nome = "CADASTRAR PROFESSOR";
         Professor professor = new Professor();
-        boolean botaoConfirmarClicado = showCadastroProfessor(professor,nome1);
+        boolean botaoConfirmarClicado = showCadastroProfessor(professor,nome);
         if (botaoConfirmarClicado) {
             professorDAO.inserir(professor);
             carregarTableViewProfessor();
@@ -97,10 +96,10 @@ public class ProfessorMenuController implements Initializable{
 
     @FXML
     public void handleBotaoAlterar() throws IOException {
-        final String nome1 = "ALTERAR PROFESSOR";
+        final String nome = "ALTERAR PROFESSOR";
         Professor professor = tableViewProfessor.getSelectionModel().getSelectedItem();
         if (professor != null) {
-            boolean botaoConfirmarClicado = showCadastroProfessor(professor,nome1);
+            boolean botaoConfirmarClicado = showCadastroProfessor(professor,nome);
             if (botaoConfirmarClicado) {
                 professorDAO.alterar(professor);
                 carregarTableViewProfessor();
@@ -133,19 +132,17 @@ public class ProfessorMenuController implements Initializable{
         loader.setLocation(CadastroProfessorController.class.getResource("/view/CadastroProfessor.fxml"));
         AnchorPane page = (AnchorPane) loader.load();
 
-        // Criando um Estágio de Diálogo (Stage Dialog)
         Stage dialogStage = new Stage();
         dialogStage.setTitle(nome);
         Scene scene = new Scene(page);
         dialogStage.setScene(scene);
         dialogStage.setResizable(false);
-        // Setando o cliente no Controller.
+        
         CadastroProfessorController controller = loader.getController();
         controller.setInteracao(dialogStage);
         controller.setProfessor(professor);
         controller.setLabelTituloProfessor(nome);
         
-        // Mostra o Dialog e espera até que o usuário o feche
         dialogStage.showAndWait();
 
         return controller.isBotaoClicado();

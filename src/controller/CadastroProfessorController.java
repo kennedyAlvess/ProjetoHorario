@@ -11,7 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.entidades.Professor;
 
-
 public class CadastroProfessorController implements Initializable {
 
     @FXML
@@ -43,7 +42,6 @@ public class CadastroProfessorController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-     
     }
 
     @FXML
@@ -103,7 +101,6 @@ public class CadastroProfessorController implements Initializable {
     public void setLabelTituloProfessor(String titulo) {
         this.labelTituloProfessor.setText(titulo);
     }
-
     public Stage getInteracao() {
         return interacao;
     }
