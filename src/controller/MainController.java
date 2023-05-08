@@ -6,9 +6,11 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
+
 
 
 
@@ -50,6 +52,5 @@ public class MainController implements Initializable {
         AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/TurmaMenu.fxml"));
         anchorPane.getChildren().setAll(a);  
     }
-
 
 }

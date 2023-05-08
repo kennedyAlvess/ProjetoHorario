@@ -80,6 +80,8 @@
                               <Label fx:id="labelTurmaDocente" GridPane.columnIndex="1" />
                               <Label text="Turma:" GridPane.columnIndex="2" />
                               <Label fx:id="labelTurmaTurma" GridPane.columnIndex="3" />
+                              <Label text="Horário:" GridPane.rowIndex="2" />
+                              <Label fx:id="labelTurmaHorario" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
                      </children>
@@ -91,6 +93,7 @@
                         <Button fx:id="botaoRemoverCC" layoutX="182.0" mnemonicParsing="false" onAction="#handleBotaoRemoverTurma" prefHeight="25.0" prefWidth="70.0" text="Remover" />
                      </children>
                   </Group>
+                  <Button fx:id="botaoBuscar" layoutX="35.0" layoutY="319.0" mnemonicParsing="false" onAction="#handleBotaoBuscar" prefHeight="25.0" prefWidth="70.0" text="Buscar" />
                </children>
             </AnchorPane>
          </items>

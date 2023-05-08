@@ -95,6 +95,7 @@ public class TurmasDAO {
                 turma.setVagas(Integer.parseInt(resultado.getString("vagas")));
                 turma.setPeriodo(resultado.getString("periodo"));
                 turma.setTurma(Integer.parseInt(resultado.getString("turm")));
+                turma.setHorarios(resultado.getString("horario"));
                 retorno.add(turma);
             }
         } catch (SQLException ex) {
@@ -103,40 +104,22 @@ public class TurmasDAO {
         return retorno;
     }
 
-    // public Turma buscar(Turma Turma) {
-    //     String sql = "SELECT * FROM Turmaes WHERE matricula=?";
-    //     Turma retorno = new Turma();
-    //     try {
-    //         PreparedStatement stmt = connection.prepareStatement(sql);
-    //         stmt.setString(1, Turma.getMatricula());
-    //         ResultSet resultado = stmt.executeQuery();
-    //         if (resultado.next()) {
-    //             Turma.setNome(resultado.getString("nome"));
-    //             Turma.setMatricula(resultado.getString("matricula"));
-    //             Turma.setTitulacao(resultado.getString("titulacao"));
-    //             Turma.setEmail(resultado.getString("email"));               
-    //             retorno = Turma;
-    //         }
-    //     } catch (SQLException ex) {
-    //         Logger.getLogger(TurmaDAO.class.getName()).log(Level.SEVERE, null, ex);
-    //     }
-    //     return retorno;
-    // }
-
-    // public List<String> matricula() {
-    //     String sql = "SELECT matricula FROM Turmaes";
-    //     List<String> matriculas = new ArrayList<>();
-    //     try {
-    //         PreparedStatement stmt = connection.prepareStatement(sql);
-    //         ResultSet resultado = stmt.executeQuery();
-    //         while (resultado.next()) {
-    //             Turma Turma = new Turma();
-    //             Turma.setMatricula(resultado.getString("matricula"));
-    //             matriculas.add(Turma.getMatricula());
-    //         }
-    //     } catch (SQLException ex) {
-    //         Logger.getLogger(TurmaDAO.class.getName()).log(Level.SEVERE, null, ex);
-    //     }
-    //     return matriculas;
-    // }
+    public List<Turma> horariosDocente(String nome) {
+        String sql = "SELECT horario,codigo FROM turmas where docente=? ";
+        List<Turma> horarioDocente = new ArrayList<>();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, nome);
+            ResultSet resultado = stmt.executeQuery();
+            while (resultado.next()) {
+                Turma Turma = new Turma();
+                Turma.setHorarios(resultado.getString("horario"));
+                Turma.setCodTurma(resultado.getString("codigo"));
+                horarioDocente.add(Turma);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TurmasDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return horarioDocente;
+    }
 }
