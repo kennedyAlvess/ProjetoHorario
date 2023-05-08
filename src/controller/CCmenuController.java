@@ -101,9 +101,9 @@ public class CCmenuController implements Initializable{
      */
     @FXML
     public void handleBotaoCadastrarCC() throws IOException {
-        final String nome2 = "CADASTRAR COMPONENTE CURRICULAR";
+        final String nome = "CADASTRAR COMPONENTE CURRICULAR";
         ComponenteCurricular componenteCurricular = new ComponenteCurricular();
-        boolean botaoConfirmarClicado = showCadastroCC(componenteCurricular,nome2);
+        boolean botaoConfirmarClicado = showCadastroCC(componenteCurricular,nome);
         if (botaoConfirmarClicado) {
             componenteCurricularDAO.inserir(componenteCurricular);
             carregarTableViewCC();
@@ -112,9 +112,9 @@ public class CCmenuController implements Initializable{
     @FXML
     public void handleBotaoAlterarCC() throws IOException {
         ComponenteCurricular componenteCurricular = tableViewCC.getSelectionModel().getSelectedItem();
-        final String nome1 = "ALTERAR COMPONENTE CURRICULAR";
+        final String nome = "ALTERAR COMPONENTE CURRICULAR";
         if (componenteCurricular != null) {
-            boolean botaoConfirmarClicado = showCadastroCC(componenteCurricular,nome1);
+            boolean botaoConfirmarClicado = showCadastroCC(componenteCurricular,nome);
             if (botaoConfirmarClicado) {
                 componenteCurricularDAO.alterar(componenteCurricular);
                 carregarTableViewCC();
@@ -145,7 +145,6 @@ public class CCmenuController implements Initializable{
         }
     }
 
-    
     /**
      * Carregando a interface de cadastro
      * @param componenteCurricular
@@ -170,7 +169,10 @@ public class CCmenuController implements Initializable{
         controller.setInteracaoCC(dialogStage);
         controller.setCC(componenteCurricular);
         controller.setLabelTituloCC(nome);
-
+        controller.setValidarCC(componenteCurricularDAO.validarCodigoCC());
+        if(nome == "ALTERAR COMPONENTE CURRICULAR"){
+            controller.setAlterar(true);
+        }
         // Mostra o Dialog e espera até que o usuário o feche
         dialogStage.showAndWait();
         return controller.isBotaoClicadoCC();

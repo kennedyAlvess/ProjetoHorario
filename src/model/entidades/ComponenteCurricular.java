@@ -1,7 +1,9 @@
 package model.entidades;
 
 import java.io.Serializable;
-
+/**
+ * Objeto componente curricular
+ */
 public class ComponenteCurricular implements Serializable {
     private String nome;
     private int cargaHoraria;

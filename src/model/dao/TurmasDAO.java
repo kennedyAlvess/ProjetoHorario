@@ -12,6 +12,14 @@ import java.util.logging.Logger;
 
 import model.entidades.Turma;
 
+/**
+ * Classe onde é feita toda regra do cadastro de turmas
+ * {@link #horariosDocente(String)} Retorna os horários por professor
+ * {@link #horariosSemestre(int)}   Retorna os horários por semestre
+ * @see #cadastrarCargaHoraria(Turma) Atualiza a carga horária semanal do professor
+ * @see #cargaHrProfessor() Lista de professores com carga horária semanal cheia
+ */
+
 public class TurmasDAO {
     private Connection connection;
 
@@ -24,7 +32,7 @@ public class TurmasDAO {
     }
 
     public boolean inserir(Turma Turma) {
-        String sql = "INSERT INTO turmas(codigo,nomecc,horario,turm,vagas,periodo, semestre, docente) VALUES(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO turmas(codigo,nomecc,horario,turm,vagas,semestre, docente,cargahoraria) VALUES(?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1,Turma.getCodTurma());
@@ -32,9 +40,10 @@ public class TurmasDAO {
             stmt.setString(3, Turma.getHorarios());
             stmt.setInt(4, Turma.getTurma());
             stmt.setInt(5, Turma.getVagas());
-            stmt.setString(6, Turma.getPeriodo());
-            stmt.setInt(7, Turma.getSemestre());
-            stmt.setString(8, Turma.getDocente());
+            stmt.setInt(6, Turma.getSemestre());
+            stmt.setString(7, Turma.getDocente());
+            stmt.setInt(8, Turma.getCargahoraria());
+
             stmt.execute();
             return true;
         } catch (SQLException ex) {
@@ -44,7 +53,7 @@ public class TurmasDAO {
     }
 
     public boolean alterar(Turma Turma) {
-        String sql = "UPDATE turmas SET codigo=?,nomecc=?, horario=?, turm=?, vagas=?,periodo=?,semestre=?,docente=? WHERE codigo=? and periodo=? and turm=?";
+        String sql = "UPDATE turmas SET codigo=?,nomecc=?, horario=?, turm=?, vagas=?,semestre=?,docente=? WHERE codigo=? and turm=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1,Turma.getCodTurma());
@@ -52,12 +61,10 @@ public class TurmasDAO {
             stmt.setString(3, Turma.getHorarios());
             stmt.setInt(4, Turma.getTurma());
             stmt.setInt(5, Turma.getVagas());
-            stmt.setString(6, Turma.getPeriodo());
-            stmt.setInt(7, Turma.getSemestre());
-            stmt.setString(8, Turma.getDocente());
-            stmt.setString(9,Turma.getCodTurma());
-            stmt.setString(10, Turma.getPeriodo());
-            stmt.setInt(11, Turma.getTurma());
+            stmt.setInt(6, Turma.getSemestre());
+            stmt.setString(7, Turma.getDocente());
+            stmt.setString(8,Turma.getCodTurma());
+            stmt.setInt(9, Turma.getTurma());
             stmt.execute();
             return true;
         } catch (SQLException ex) {
@@ -67,12 +74,11 @@ public class TurmasDAO {
     }
 
     public boolean remover(Turma Turma) {
-        String sql = "DELETE FROM turmas WHERE codigo=? and turm=? and periodo=?";
+        String sql = "DELETE FROM turmas WHERE codigo=? and turm=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1,Turma.getCodTurma());
             stmt.setInt(2,Turma.getTurma());
-            stmt.setString(3, Turma.getPeriodo());
             stmt.execute();
             return true;
         } catch (SQLException ex) {
@@ -93,7 +99,6 @@ public class TurmasDAO {
                 turma.setCodTurma(resultado.getString("codigo"));
                 turma.setDocente(resultado.getString("docente"));
                 turma.setVagas(Integer.parseInt(resultado.getString("vagas")));
-                turma.setPeriodo(resultado.getString("periodo"));
                 turma.setTurma(Integer.parseInt(resultado.getString("turm")));
                 turma.setHorarios(resultado.getString("horario"));
                 retorno.add(turma);
@@ -123,26 +128,6 @@ public class TurmasDAO {
         return horarioDocente;
     }
 
-    public List<Turma> horariosDocenteSemestre(String nome,int semestre) {
-        String sql = "SELECT horario,codigo FROM turmas where docente=? and semestre=?";
-        List<Turma> horarioDocenteSemestre = new ArrayList<>();
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, nome);
-            stmt.setInt(2, semestre);
-            ResultSet resultado = stmt.executeQuery();
-            while (resultado.next()) {
-                Turma Turma = new Turma();
-                Turma.setHorarios(resultado.getString("horario"));
-                Turma.setCodTurma(resultado.getString("codigo"));
-                horarioDocenteSemestre.add(Turma);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(TurmasDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return horarioDocenteSemestre;
-    }
-
     public List<Turma> horariosSemestre(int semestre) {
         String sql = "SELECT horario,codigo FROM turmas where semestre=?";
         List<Turma> horarioSemestre = new ArrayList<>();
@@ -162,4 +147,56 @@ public class TurmasDAO {
         return horarioSemestre;
     }
 
+    public boolean cadastrarCargaHoraria(Turma turma){
+        String sql = "update professores set cargahoraria = cargahoraria+? where nome=?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, (turma.getCargahoraria()/15));
+            stmt.setString(2, turma.getDocente());
+            stmt.execute();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(TurmasDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+
+    public List<Turma> validarTurma(){
+        String sql = "Select * from turmas";
+        List<Turma> turmasCadastradas = new ArrayList<>();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet resultado = stmt.executeQuery();
+            while(resultado.next()){
+                Turma turma = new Turma();
+                turma.setNome(resultado.getString("nomecc"));
+                turma.setCodTurma(resultado.getString("codigo"));
+                turma.setDocente(resultado.getString("docente"));
+                turma.setVagas(Integer.parseInt(resultado.getString("vagas")));
+                turma.setTurma(Integer.parseInt(resultado.getString("turm")));
+                turma.setHorarios(resultado.getString("horario"));
+                turma.setSemestre(resultado.getInt("semestre"));
+                turmasCadastradas.add(turma);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(TurmasDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return turmasCadastradas;
+    }
+
+    public List<String> cargaHrProfessor(){
+        String sql = "Select nome from professores where cargahoraria = 20";
+        List<String> professorFull = new ArrayList<>();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet resultado = stmt.executeQuery();
+            while(resultado.next()){
+                professorFull.add(resultado.getString("nome"));
+            }          
+        } catch (SQLException ex) {
+            Logger.getLogger(TurmasDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return professorFull;
+    }
 }

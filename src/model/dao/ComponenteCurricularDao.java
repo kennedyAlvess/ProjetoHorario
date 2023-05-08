@@ -10,7 +10,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import model.entidades.ComponenteCurricular;
-
+/**
+ * Classes DAO onde é feita toda conexão com o banco de dados apra obter dados amarzenados
+ */
 public class ComponenteCurricularDAO {
     private Connection connection;
 
@@ -22,6 +24,16 @@ public class ComponenteCurricularDAO {
         this.connection = connection;
     }
 
+    /**
+     * Metodos para manipulação do banco de dados (Inserir, remover,listar entre outros)
+     * {@link #inserir(ComponenteCurricular)}
+     * {@link #alterar(ComponenteCurricular)}
+     * {@link #remover(ComponenteCurricular)}
+     * {@link #listar()}
+     * @see #validarCodigoCC()
+     * @param componentecurricular
+     * @return
+     */
     public boolean inserir(ComponenteCurricular componentecurricular) {
         String sql = "INSERT INTO componentecurricular(nomecc, cargahorariacc, codigo,semestre,obrigatoriedade) VALUES(?,?,?,?,?)";
         try {
@@ -90,42 +102,21 @@ public class ComponenteCurricularDAO {
         return retorno;
     }
 
-    public ComponenteCurricular buscar(ComponenteCurricular componentecurricular) {
-        String sql = "SELECT * FROM componentecurriculares WHERE codigo=?";
-        ComponenteCurricular retorno = new ComponenteCurricular();
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, componentecurricular.getCodigo());
-            ResultSet resultado = stmt.executeQuery();
-            if (resultado.next()) {
-                componentecurricular.setNome(resultado.getString("nomecc"));
-                componentecurricular.setCargaHoraria(resultado.getInt("cargahorariacc"));
-                componentecurricular.setCodigo(resultado.getString("codigo"));
-                componentecurricular.setSemestre(resultado.getInt("semestre"));
-                componentecurricular.setObrigatoriedade(resultado.getString("obrigatoriedade"));             
-                retorno = componentecurricular;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ComponenteCurricularDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return retorno;
-    }
-
-    public List<String> codigo() {
-        String sql = "SELECT codigo FROM componentecurriculares";
-        List<String> matriculas = new ArrayList<>();
+    public List<String> validarCodigoCC() {
+        String sql = "SELECT codigo FROM componentecurricular";
+        List<String> ccExistentes = new ArrayList<>();
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             ResultSet resultado = stmt.executeQuery();
             while (resultado.next()) {
                 ComponenteCurricular componentecurricular = new ComponenteCurricular();
                 componentecurricular.setCodigo(resultado.getString("codigo"));
-                matriculas.add(componentecurricular.getCodigo());
+                ccExistentes.add(componentecurricular.getCodigo());
             }
         } catch (SQLException ex) {
             Logger.getLogger(ComponenteCurricularDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return matriculas;
+        return ccExistentes;
     }
 }
 

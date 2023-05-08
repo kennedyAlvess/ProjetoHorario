@@ -12,57 +12,36 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #E0FFFF;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroTurmaController">
    <children>
-      <GridPane layoutX="49.0" layoutY="285.0" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="65.0">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-         </rowConstraints>
+      <GridPane layoutX="50.0" layoutY="164.0" prefHeight="150.0" prefWidth="500.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="70.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="268.0" minWidth="10.0" prefWidth="259.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="153.0" minWidth="10.0" prefWidth="78.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="0.0" prefWidth="77.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <GridPane prefHeight="59.0" prefWidth="475.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="71.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="391.0" minWidth="10.0" prefWidth="257.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="391.0" minWidth="10.0" prefWidth="58.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="391.0" minWidth="10.0" prefWidth="92.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Label text="Disciplina:" />
-                  <TextField fx:id="TextFieldTurmaNome" maxWidth="250.0" prefHeight="25.0" prefWidth="88.0" GridPane.columnIndex="1" />
-                  <Label prefHeight="17.0" prefWidth="45.0" text="Código:" GridPane.columnIndex="2" />
-                  <TextField fx:id="TextFieldTurmaCodigo" prefHeight="25.0" prefWidth="59.0" GridPane.columnIndex="3" />
-               </children>
-            </GridPane>
-            <GridPane prefHeight="96.0" prefWidth="485.0" GridPane.rowIndex="1">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="69.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="268.0" minWidth="10.0" prefWidth="259.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="57.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="90.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label text="Docente:" />
-                  <Label text="Périodo/Ano:" GridPane.rowIndex="1" />
-                  <Label text="Turma:" GridPane.columnIndex="2" />
-                  <Label text="Vagas:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <TextField fx:id="TextFieldTurmaDocente" maxWidth="250.0" GridPane.columnIndex="1" />
-                  <TextField fx:id="TextFieldTurmaPeriodo" maxWidth="250.0" prefHeight="25.0" prefWidth="248.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="TextFieldTurmaTurma" GridPane.columnIndex="3" />
-                  <TextField fx:id="TextFieldTurmaVagas" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <Label text="Horário:" GridPane.rowIndex="2" />
-                  <TextField fx:id="TextFieldTurmaHorario" maxWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-               </children>
-            </GridPane>
+            <Label text="Docente:" GridPane.rowIndex="1" />
+            <Label maxWidth="1.7976931348623157E308" prefWidth="0.0" text="Turma:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label maxWidth="1.7976931348623157E308" prefWidth="0.0" text="Vagas:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="TextFieldTurmaDocente" maxWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="TextFieldTurmaTurma" maxWidth="50.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <TextField fx:id="TextFieldTurmaVagas" maxWidth="50.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" prefHeight="24.0" prefWidth="0.0" text="Carga Horaria:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField fx:id="TextFieldTurmaHora" alignment="TOP_LEFT" maxWidth="50.0" prefWidth="81.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label prefHeight="25.0" prefWidth="43.0" text="Horário:" GridPane.rowIndex="2" />
+            <TextField fx:id="TextFieldTurmaHorario" maxWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="70.0" text="Semestre:" GridPane.rowIndex="3" />
+            <TextField fx:id="TextFieldTurmaSemestre" maxWidth="50.0" prefHeight="25.0" prefWidth="70.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Disciplina:" />
+            <TextField fx:id="TextFieldTurmaNome" maxWidth="250.0" prefHeight="25.0" prefWidth="88.0" GridPane.columnIndex="1" />
+            <Label maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="0.0" text="Código:" GridPane.columnIndex="2" />
+            <TextField fx:id="TextFieldTurmaCodigo" prefHeight="25.0" prefWidth="59.0" GridPane.columnIndex="3" />
          </children>
       </GridPane>
       <Group layoutX="223.0" layoutY="439.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="439.0">

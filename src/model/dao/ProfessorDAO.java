@@ -88,41 +88,21 @@ public class ProfessorDAO {
         return retorno;
     }
 
-    public Professor buscar(Professor Professor) {
-        String sql = "SELECT * FROM professores WHERE matricula=?";
-        Professor retorno = new Professor();
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, Professor.getMatricula());
-            ResultSet resultado = stmt.executeQuery();
-            if (resultado.next()) {
-                Professor.setNome(resultado.getString("nome"));
-                Professor.setMatricula(resultado.getString("matricula"));
-                Professor.setTitulacao(resultado.getString("titulacao"));
-                Professor.setEmail(resultado.getString("email"));               
-                retorno = Professor;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return retorno;
-    }
-
-    public List<String> matricula() {
+    public List<String> validarProfessorMat() {
         String sql = "SELECT matricula FROM professores";
-        List<String> matriculas = new ArrayList<>();
+        List<String> matExistentes = new ArrayList<>();
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             ResultSet resultado = stmt.executeQuery();
             while (resultado.next()) {
                 Professor professor = new Professor();
                 professor.setMatricula(resultado.getString("matricula"));
-                matriculas.add(professor.getMatricula());
+                matExistentes.add(professor.getMatricula());
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ProfessorDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ComponenteCurricularDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return matriculas;
+        return matExistentes;
     }
 }
 

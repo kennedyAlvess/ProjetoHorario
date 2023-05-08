@@ -19,7 +19,10 @@ import model.dao.TurmasDAO;
 import model.database.Database;
 import model.database.DatabasePostgreSQL;
 import model.entidades.Turma;
-
+/**
+ * Classe utilizada para controlar a busca de turmas por professor ou semestre.
+ * 
+ */
 public class BuscarTurmaController implements Initializable {
 
     @FXML

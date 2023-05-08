@@ -126,7 +126,7 @@ public class ProfessorMenuController implements Initializable{
             alert.show();
         }
     }
-    
+   
     public boolean showCadastroProfessor(Professor professor,String nome) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(CadastroProfessorController.class.getResource("/view/CadastroProfessor.fxml"));
@@ -142,7 +142,10 @@ public class ProfessorMenuController implements Initializable{
         controller.setInteracao(dialogStage);
         controller.setProfessor(professor);
         controller.setLabelTituloProfessor(nome);
-        
+        controller.setValidarProfessor(professorDAO.validarProfessorMat());
+        if(nome == "ALTERAR PROFESSOR"){
+            controller.setAlterar(true);
+        }
         dialogStage.showAndWait();
 
         return controller.isBotaoClicado();

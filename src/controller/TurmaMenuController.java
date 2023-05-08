@@ -19,6 +19,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
 import model.dao.TurmasDAO;
 import model.database.Database;
 import model.database.DatabasePostgreSQL;
@@ -38,8 +39,6 @@ public class TurmaMenuController implements Initializable {
     private Label labelCodTurma;
     @FXML
     private Label labelTurmaDocente;
-    @FXML
-    private Label labelTurmaPeriodo;
     @FXML
     private Label labelTurmaTurma;
     @FXML
@@ -82,7 +81,6 @@ public class TurmaMenuController implements Initializable {
             labelTurmaDocente.setText(Turma.getDocente());
             labelTurmaVagas.setText(String.valueOf(Turma.getVagas()));
             labelTurmaTurma.setText(String.valueOf(Turma.getTurma()));
-            labelTurmaPeriodo.setText(Turma.getPeriodo());
             labelTurmaHorario.setText(Turma.getHorarios());
         } else {
             labelTurmaNome.setText("");
@@ -90,7 +88,6 @@ public class TurmaMenuController implements Initializable {
             labelTurmaDocente.setText("");
             labelTurmaVagas.setText("");
             labelTurmaTurma.setText("");
-            labelTurmaPeriodo.setText("");
             labelTurmaHorario.setText("");
         }
     }
@@ -102,6 +99,7 @@ public class TurmaMenuController implements Initializable {
         boolean botaoConfirmarClicado = showCadastroTurma(turma, nome);
         if (botaoConfirmarClicado) {
             turmaDAO.inserir(turma);
+            turmaDAO.cadastrarCargaHoraria(turma);
             carregarTableViewTurma();
         }
     }
@@ -175,10 +173,15 @@ public class TurmaMenuController implements Initializable {
         dialogStage.setResizable(false);
 
         CadastroTurmaController controller = loader.getController();
+        if(nome == "ALTERAR TURMA"){
+            controller.setAlterar(true);
+        }
+        controller.setListaDeTurmas(turmaDAO.validarTurma());
         controller.setInteracao(dialogStage);
         controller.setTurma(turma);
         controller.setLabelTituloTurma(nome);
-
+        controller.setListaDeProfessores(turmaDAO.cargaHrProfessor());
+        
         dialogStage.showAndWait();
 
         return controller.isBotaoClicado();

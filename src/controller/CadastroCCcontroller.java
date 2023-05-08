@@ -1,6 +1,7 @@
 package controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,12 +14,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import model.entidades.ComponenteCurricular;
 
-/**
- * Classe utilizada para controlar a busca de turmas por professor ou semestre.
- * 
- */
+import model.entidades.ComponenteCurricular;
 
 public class CadastroCCcontroller implements Initializable{
     
@@ -48,10 +45,12 @@ public class CadastroCCcontroller implements Initializable{
     @FXML
     private Label labelTituloCC;
 
-    
     private Stage interacao;
     private boolean botaoConfirmarClicadoCC;
     private ComponenteCurricular componenteCurricular;
+    private List<String> validarCC;
+    private boolean alterar;
+
 
     //Preenchendo os ChoiceBox da interface gráfica
     private ObservableList<String> choiceBoxList = FXCollections.observableArrayList("Obrigatoria","Optativa");
@@ -80,7 +79,6 @@ public class CadastroCCcontroller implements Initializable{
             interacao.close();
         }
     }
-
     @FXML
     public void handleBotaoCancelarCC(){
         interacao.close();
@@ -106,18 +104,29 @@ public class CadastroCCcontroller implements Initializable{
         if (TextFieldCCnome.getText() == null || TextFieldCCnome.getText().length() == 0) {
             errorMessage += "Nome inválido!\n";
         }
-        if (TextFieldCCcargahoraria.getText() == null || Integer.parseInt(TextFieldCCcargahoraria.getText()) <= 0) {
-            errorMessage += "Carga horaria invalida!*\n";  
+        if (TextFieldCCcargahoraria.getText() == null || Integer.parseInt(TextFieldCCcargahoraria.getText()) <= 0 || Integer.parseInt(TextFieldCCcargahoraria.getText()) > 90) {
+            errorMessage += "Carga horaria inválida!*\n";  
         }
-        if (TextFieldCCcodigo.getText() == null || TextFieldCCcodigo.getText().length() == 0) {
+        if ( alterar == false && (validarCC.contains(TextFieldCCcodigo.getText()) || TextFieldCCcodigo.getText() == null || 
+        TextFieldCCcodigo.getText().length() == 0 || TextFieldCCcodigo.getText().length() > 7)) {
+            errorMessage += "Código já vincculado a um componente curricular!\n";
+        }
+        if ( alterar == true && (TextFieldCCcodigo.getText() == null || 
+        TextFieldCCcodigo.getText().length() == 0 || TextFieldCCcodigo.getText().length() > 7)) {
             errorMessage += "Código inválida!\n";
+        }
+        if(choiceBoxCC.getValue() == null){
+            errorMessage += "Valor inválido! Selecione Obrigatorio/Optativa\n";
+        }
+        if(choiceBoxSemestre.getValue() == null){
+            errorMessage += "Semestre inválido!\n";
         }
         if (errorMessage.length() == 0) {
             return true;
         } else {
             // Mostrando a mensagem de erro
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro no cadastro");
+            alert.setTitle("Erro no preenchimento dos dados");
             alert.setHeaderText("Campos inválidos, por favor, corrija...");
             alert.setContentText(errorMessage);
             alert.show();
@@ -138,4 +147,11 @@ public class CadastroCCcontroller implements Initializable{
     public boolean isBotaoClicadoCC() {
         return botaoConfirmarClicadoCC;
     }
+    public void setAlterar(boolean alterar) {
+        this.alterar = alterar;
+    }
+    public void setValidarCC(List<String> validarCC) {
+        this.validarCC = validarCC;
+    }
+
 }

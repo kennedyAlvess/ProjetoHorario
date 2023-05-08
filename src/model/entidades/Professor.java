@@ -1,7 +1,9 @@
 package model.entidades;
 
 import java.io.Serializable;
-
+/**
+ * Objeto professor
+ */
 public class Professor implements Serializable{
     private String nome;
     private String matricula;

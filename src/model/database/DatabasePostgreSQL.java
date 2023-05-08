@@ -7,6 +7,7 @@ import java.sql.SQLException;
 public class DatabasePostgreSQL implements Database {
     private Connection connection;
 
+    //Setando conexão com o banco de dados local
     @Override
     public Connection conectar() {
         try {

@@ -1,6 +1,7 @@
 package controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,6 +40,8 @@ public class CadastroProfessorController implements Initializable {
     private Stage interacao;
     private boolean botaoConfirmarClicado;
     private Professor professor;
+    private boolean alterar;
+    private List<String> validarProfessor;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -74,7 +77,10 @@ public class CadastroProfessorController implements Initializable {
         if (TextFieldProfessorNome.getText() == null || TextFieldProfessorNome.getText().length() == 0) {
             errorMessage += "Nome inválido!\n";
         }
-        if (  TextFieldProfessorMat.getText() == null || TextFieldProfessorMat.getText().length() < 10 || TextFieldProfessorMat.getText().length() > 10 || !TextFieldProfessorMat.getText().matches("[0-9]*")) {
+        if ( alterar == false && (validarProfessor.contains(TextFieldProfessorMat.getText()) || TextFieldProfessorMat.getText() == null || TextFieldProfessorMat.getText().length() < 10 || TextFieldProfessorMat.getText().length() > 10 || !TextFieldProfessorMat.getText().matches("[0-9]*"))) {
+            errorMessage += "Matricula já existente!*\n";  
+        }
+        if ( alterar == true && (TextFieldProfessorMat.getText() == null || TextFieldProfessorMat.getText().length() < 10 || TextFieldProfessorMat.getText().length() > 10 || !TextFieldProfessorMat.getText().matches("[0-9]*"))) {
             errorMessage += "Matricula inválida! *Ex: 0123456789 *\n";  
         }
         if (TextFieldProfessorTitulo.getText() == null || TextFieldProfessorTitulo.getText().length() == 0) {
@@ -115,6 +121,12 @@ public class CadastroProfessorController implements Initializable {
     }
     public Professor getProfessor() {
         return professor;
+    }
+    public void setAlterar(boolean alterar) {
+        this.alterar = alterar;
+    }
+    public void setValidarProfessor(List<String> validarProfessor) {
+        this.validarProfessor = validarProfessor;
     }
 
 }

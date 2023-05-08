@@ -1,7 +1,9 @@
 package model.entidades;
 
 import java.io.Serializable;
-
+/**
+ * Objeto turma
+ */
 public class Turma  implements Serializable{
     private String nome;
     private int vagas;
@@ -11,8 +13,7 @@ public class Turma  implements Serializable{
     private String codTurma;
     private String docente;
     private int semestre;
-
-
+    private int cargahoraria;
 
     public Turma(int semestre,String docente,String nome, int vagas, String horarios, int turma, String periodo, String codTurma) {
         this.docente = docente;
@@ -29,6 +30,13 @@ public class Turma  implements Serializable{
 
     }
 
+    public int getCargahoraria() {
+        return cargahoraria;
+    }
+
+    public void setCargahoraria(int cargahoraria) {
+        this.cargahoraria = cargahoraria;
+    }
     public String getNome() {
         return nome;
     }
