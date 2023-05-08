@@ -339,6 +339,7 @@ public class BuscarTurmaController implements Initializable {
     }
 
     public void handleBotaoPesquisar() {
+        limparTelaHorario();
         
         listHorarios = turmaDAO.horariosDocente(TextFieldBuscar.getText());
         for (int i = 0; i < listHorarios.size(); i++) {
@@ -761,6 +762,111 @@ public class BuscarTurmaController implements Initializable {
 
     public Turma getTurma() {
         return turma;
+    }
+
+    public void limparTelaHorario(){
+//Limpando a tabela de horario da segunda
+        label2M1.setText("");
+        label2M2.setText("");
+        label2M3.setText("");
+        label2M4.setText("");
+        label2M5.setText("");
+        label2M6.setText("");
+        label2T1.setText("");
+        label2T2.setText("");
+        label2T3.setText("");
+        label2T4.setText("");
+        label2T5.setText("");
+        label2T6.setText("");
+        label2N1.setText("");
+        label2N2.setText("");
+        label2N3.setText("");
+        label2N4.setText("");
+//Limpando a tabela de horario da terça
+        label3M1.setText("");
+        label3M2.setText("");
+        label3M3.setText("");
+        label3M4.setText("");
+        label3M5.setText("");
+        label3M6.setText("");
+        label3T1.setText("");
+        label3T2.setText("");
+        label3T3.setText("");
+        label3T4.setText("");
+        label3T5.setText("");
+        label3T6.setText("");
+        label3N1.setText("");
+        label3N2.setText("");
+        label3N3.setText("");
+        label3N4.setText("");
+//Limpando a tabela de horario da quarta
+        labe4M1.setText("");
+        labe4M2.setText("");
+        labe4M3.setText("");
+        labe4M4.setText("");
+        labe4M5.setText("");
+        labe4M6.setText("");
+        labe4T1.setText("");
+        labe4T2.setText("");
+        labe4T3.setText("");
+        labe4T4.setText("");
+        labe4T5.setText("");
+        labe4T6.setText("");
+        labe4N1.setText("");
+        labe4N2.setText("");
+        labe4N3.setText("");
+        labe4N4.setText("");
+//Limpando a tabela de horario da quinta
+        label5M1.setText("");
+        label5M2.setText("");
+        label5M3.setText("");
+        label5M4.setText("");
+        label5M5.setText("");
+        label5M6.setText("");
+        label5T1.setText("");
+        label5T2.setText("");
+        label5T3.setText("");
+        label5T4.setText("");
+        label5T5.setText("");
+        label5T6.setText("");
+        labe5N1.setText("");
+        labe5N2.setText("");
+        labe5N3.setText("");
+        labe5N4.setText("");
+//Limpando a tabela de horario da sexta
+        label6M1.setText("");
+        label6M2.setText("");
+        label6M3.setText("");
+        label6M4.setText("");
+        label6M5.setText("");
+        label6M6.setText("");
+        label6T1.setText("");
+        label6T2.setText("");
+        label6T3.setText("");
+        label6T4.setText("");
+        label6T5.setText("");
+        label6T6.setText("");
+        label6N1.setText("");
+        label6N2.setText("");
+        label6N3.setText("");
+        label6N4.setText("");
+        //Limpando a tabela de horario do sabado
+        label7M1.setText("");
+        label7M2.setText("");
+        label7M3.setText("");
+        label7M4.setText("");
+        label7M5.setText("");
+        label7M6.setText("");
+        label7T1.setText("");
+        label7T2.setText("");
+        label7T3.setText("");
+        label7T4.setText("");
+        label7T5.setText("");
+        label7T6.setText("");
+        label7N1.setText("");
+        label7N2.setText("");
+        label7N3.setText("");
+        label7N4.setText("");
     }
 
 }
