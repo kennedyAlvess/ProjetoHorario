@@ -10,7 +10,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
-      <MenuBar style="-fx-background-color: #E0FFFF; -fx-border-color: #000000;">
+      <MenuBar style="-fx-border-color: #000000;">
         <menus>
           <Menu mnemonicParsing="false" text="Professores">
             <items>
@@ -29,9 +29,9 @@
           </Menu>
         </menus>
       </MenuBar>
-      <AnchorPane fx:id="anchorPane" prefHeight="420.0" prefWidth="750.0">
+      <AnchorPane fx:id="anchorPane" prefHeight="420.0" prefWidth="750.0" style="-fx-border-color: #000000;">
          <children>
-            <ImageView fitHeight="395.0" fitWidth="751.0" pickOnBounds="true">
+            <ImageView fitHeight="420.0" fitWidth="750.0" pickOnBounds="true" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="0.0">
                <image>
                   <Image url="@../../../Imagens/engsoft.png" />
                </image>

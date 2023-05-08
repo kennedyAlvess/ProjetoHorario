@@ -28,14 +28,14 @@
                   </TableView>
                </children>
             </AnchorPane>
-            <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="520.0" style="-fx-background-color: #E0FFFF;">
+            <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="520.0" style="-fx-background-color: #F0FFF0; -fx-border-color: #000000;">
                <children>
-                  <Label layoutX="94.0" layoutY="27.0" prefHeight="30.0" prefWidth="344.0" text="Detalhes do Componente Curricular" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="26.0">
+                  <Label layoutX="94.0" layoutY="27.0" prefHeight="30.0" prefWidth="344.0" text="Detalhes do Componente Curricular" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="25.0">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <GridPane layoutX="20.0" layoutY="64.0" prefHeight="183.0" prefWidth="508.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="64.0">
+                  <GridPane layoutX="20.0" layoutY="64.0" prefHeight="183.0" prefWidth="508.0" AnchorPane.bottomAnchor="108.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="108.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="10.0" prefWidth="96.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="430.0" minWidth="10.0" prefWidth="412.0" />
@@ -56,11 +56,11 @@
                         <Label fx:id="labelCCsemestre" prefHeight="17.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
-                  <Group layoutX="190.0" layoutY="318.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="122.0" AnchorPane.topAnchor="318.0">
+                  <Group layoutX="190.0" layoutY="318.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="133.5" AnchorPane.rightAnchor="133.5" AnchorPane.topAnchor="315.0">
                      <children>
                         <Button fx:id="botaoAlterarCC" layoutX="91.0" mnemonicParsing="false" onAction="#handleBotaoAlterarCC" prefHeight="25.0" prefWidth="70.0" text="Alterar" />
-                        <Button fx:id="botaoCadastrarCC" mnemonicParsing="false" onAction="#handleBotaoCadastrarCC" prefHeight="25.0" prefWidth="70.0" text="Cadastrar" />
-                        <Button fx:id="botaoRemoverCC" layoutX="182.0" mnemonicParsing="false" onAction="#handleBotaoRemoverCC" prefHeight="25.0" prefWidth="70.0" text="Remover" />
+                        <Button fx:id="botaoCadastrarCC" layoutX="182.0" mnemonicParsing="false" onAction="#handleBotaoCadastrarCC" prefHeight="25.0" prefWidth="70.0" text="Cadastrar" />
+                        <Button fx:id="botaoRemoverCC" mnemonicParsing="false" onAction="#handleBotaoRemoverCC" prefHeight="25.0" prefWidth="70.0" text="Remover" />
                      </children>
                   </Group>
                </children>

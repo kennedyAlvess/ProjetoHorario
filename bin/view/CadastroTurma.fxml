@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #E0FFFF;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroTurmaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #F0FFF0; -fx-border-color: #000000;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroTurmaController">
    <children>
-      <GridPane layoutX="50.0" layoutY="164.0" prefHeight="150.0" prefWidth="500.0">
+      <GridPane layoutX="50.0" layoutY="164.0" prefHeight="150.0" prefWidth="500.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="175.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="70.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="268.0" minWidth="10.0" prefWidth="259.0" />
@@ -44,13 +44,13 @@
             <TextField fx:id="TextFieldTurmaCodigo" prefHeight="25.0" prefWidth="59.0" GridPane.columnIndex="3" />
          </children>
       </GridPane>
-      <Group layoutX="223.0" layoutY="439.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="439.0">
+      <Group layoutX="223.0" layoutY="439.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="400.0">
          <children>
-            <Button fx:id="botaoConfirmar" mnemonicParsing="false" onAction="#handleBotaoConfirmar" prefHeight="25.0" prefWidth="70.0" text="Confirmar" />
-            <Button fx:id="botaoCancelar" layoutX="107.0" mnemonicParsing="false" onAction="#handleBotaoCancelar" prefHeight="25.0" prefWidth="70.0" text="Cancelar" />
+            <Button fx:id="botaoConfirmar" layoutX="107.0" mnemonicParsing="false" onAction="#handleBotaoConfirmar" prefHeight="25.0" prefWidth="70.0" text="Confirmar" />
+            <Button fx:id="botaoCancelar" mnemonicParsing="false" onAction="#handleBotaoCancelar" prefHeight="25.0" prefWidth="70.0" text="Cancelar" />
          </children>
       </Group>
-      <Label fx:id="labelTituloTurma" layoutX="192.0" layoutY="33.0" prefHeight="30.0" prefWidth="240.0" text="CADASTRAR TURMA" AnchorPane.leftAnchor="192.0" AnchorPane.rightAnchor="168.0" AnchorPane.topAnchor="32.0">
+      <Label fx:id="labelTituloTurma" layoutX="192.0" layoutY="33.0" prefHeight="30.0" prefWidth="204.0" text="CADASTRAR TURMA" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="198.0" AnchorPane.topAnchor="50.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

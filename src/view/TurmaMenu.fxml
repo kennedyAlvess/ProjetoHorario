@@ -28,14 +28,14 @@
                   </TableView>
                </children>
             </AnchorPane>
-            <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="520.0" style="-fx-background-color: #E0FFFF;">
+            <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="520.0" style="-fx-background-color: #F0FFF0; -fx-border-color: #000000;">
                <children>
-                  <Label layoutX="163.0" layoutY="28.0" prefHeight="30.0" prefWidth="183.0" text="Detalhes da Turma" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="168.0" AnchorPane.topAnchor="26.0">
+                  <Label layoutX="163.0" layoutY="28.0" prefHeight="30.0" prefWidth="183.0" text="Detalhes da Turma" AnchorPane.leftAnchor="168.5" AnchorPane.rightAnchor="168.5" AnchorPane.topAnchor="25.0">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <GridPane layoutX="17.0" layoutY="100.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="100.0">
+                  <GridPane layoutX="17.0" layoutY="100.0" AnchorPane.bottomAnchor="154.5" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="154.5">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                      </columnConstraints>
@@ -83,14 +83,14 @@
                         </GridPane>
                      </children>
                   </GridPane>
-                  <Group layoutX="190.0" layoutY="318.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="122.0" AnchorPane.topAnchor="318.0">
+                  <Group layoutX="190.0" layoutY="318.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="133.5" AnchorPane.rightAnchor="122.0" AnchorPane.topAnchor="315.0">
                      <children>
                         <Button fx:id="botaoAlterarCC" layoutX="91.0" mnemonicParsing="false" onAction="#handleBotaoAlterarCC" prefHeight="25.0" prefWidth="70.0" text="Alterar" />
                         <Button fx:id="botaoCadastrarCC" mnemonicParsing="false" onAction="#handleBotaoCadastrarCC" prefHeight="25.0" prefWidth="70.0" text="Cadastrar" />
                         <Button fx:id="botaoRemoverCC" layoutX="182.0" mnemonicParsing="false" onAction="#handleBotaoRemoverTurma" prefHeight="25.0" prefWidth="70.0" text="Remover" />
                      </children>
                   </Group>
-                  <Button fx:id="botaoBuscar" layoutX="35.0" layoutY="319.0" mnemonicParsing="false" onAction="#handleBotaoBuscar" prefHeight="25.0" prefWidth="70.0" text="Buscar" />
+                  <Button fx:id="botaoBuscar" layoutX="35.0" layoutY="319.0" mnemonicParsing="false" onAction="#handleBotaoBuscar" prefHeight="25.0" prefWidth="70.0" text="Buscar" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="415.0" AnchorPane.topAnchor="315.0" />
                </children>
             </AnchorPane>
          </items>
