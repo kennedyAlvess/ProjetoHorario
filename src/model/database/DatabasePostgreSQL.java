@@ -12,7 +12,7 @@ public class DatabasePostgreSQL implements Database {
     public Connection conectar() {
         try {
             Class.forName("org.postgresql.Driver");
-            this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDprojeto", "postgres","19738246");
+            this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/<nome do seu banco de dados>, "user","senha");
             return this.connection;
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println("Drive não encontrado ou erro na conexao com o banco de dados");
