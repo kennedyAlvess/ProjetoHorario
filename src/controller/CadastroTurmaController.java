@@ -118,7 +118,7 @@ public class CadastroTurmaController implements Initializable {
         
         for (Turma turma : listaDeTurmas) {
             String horarioText="",horarioTurma ="";
-            if(Integer.parseInt(TextFieldTurmaSemestre.getText()) == turma.getSemestre() && Integer.parseInt(TextFieldTurmaTurma.getText()) == turma.getTurma() || TextFieldTurmaDocente.getText().equals(turma.getDocente())){
+            if(Integer.parseInt(TextFieldTurmaSemestre.getText()) == turma.getSemestre() && Integer.parseInt(TextFieldTurmaTurma.getText()) == turma.getTurma() || turma.getDocente().equals(TextFieldTurmaDocente.getText())){
                 if(TextFieldTurmaHorario.getText() == null || (TextFieldTurmaHorario.getText().length() !=9 && TextFieldTurmaHorario.getText().length() != 5 && TextFieldTurmaHorario.getText().length() != 6 )){
                     if(TextFieldTurmaHorario.getText() == null){
                         break;

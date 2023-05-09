@@ -51,6 +51,10 @@ public class TurmaMenuController implements Initializable {
     private Label labelTurmaHorario;
     @FXML
     private Button botaoBuscar;
+    @FXML
+    private Label labelCHturma;
+    @FXML
+    private Label labelTurmaSemestre;
 
     private List<Turma> listTurma;
     private ObservableList<Turma> observableListTurma;
@@ -82,6 +86,8 @@ public class TurmaMenuController implements Initializable {
             labelTurmaVagas.setText(String.valueOf(Turma.getVagas()));
             labelTurmaTurma.setText(String.valueOf(Turma.getTurma()));
             labelTurmaHorario.setText(Turma.getHorarios());
+            labelCHturma.setText(String.valueOf(Turma.getCargahoraria()));
+            labelTurmaSemestre.setText(String.valueOf(Turma.getSemestre()));
         } else {
             labelTurmaNome.setText("");
             labelCodTurma.setText("");
@@ -89,11 +95,12 @@ public class TurmaMenuController implements Initializable {
             labelTurmaVagas.setText("");
             labelTurmaTurma.setText("");
             labelTurmaHorario.setText("");
+            labelCHturma.setText("");
         }
     }
 
     @FXML
-    public void handleBotaoCadastrarCC() throws IOException {
+    public void handleBotaoCadastrarTurma() throws IOException {
         String nome = "CADASTRAR TURMA";
         Turma turma = new Turma();
         boolean botaoConfirmarClicado = showCadastroTurma(turma, nome);
@@ -105,11 +112,11 @@ public class TurmaMenuController implements Initializable {
     }
 
     @FXML
-    public void handleBotaoAlterarCC() throws IOException {
+    public void handleBotaoAlterarTurma() throws IOException {
         Turma turma = tableViewTurma.getSelectionModel().getSelectedItem();
-        String nome1 = "ALTERAR TURMA";
+        String nome = "ALTERAR TURMA";
         if (turma != null) {
-            boolean botaoConfirmarClicado = showCadastroTurma(turma, nome1);
+            boolean botaoConfirmarClicado = showCadastroTurma(turma, nome);
             if (botaoConfirmarClicado) {
                 turmaDAO.alterar(turma);
                 carregarTableViewTurma();

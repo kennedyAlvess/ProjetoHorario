@@ -101,6 +101,8 @@ public class TurmasDAO {
                 turma.setVagas(Integer.parseInt(resultado.getString("vagas")));
                 turma.setTurma(Integer.parseInt(resultado.getString("turm")));
                 turma.setHorarios(resultado.getString("horario"));
+                turma.setSemestre(Integer.parseInt(resultado.getString("semestre")));
+                turma.setCargahoraria(Integer.parseInt(resultado.getString("cargahoraria")));
                 retorno.add(turma);
             }
         } catch (SQLException ex) {
