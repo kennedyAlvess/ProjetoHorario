@@ -75,19 +75,19 @@ public class CadastroProfessorController implements Initializable {
     private boolean validarEntradaDeDados() {
         String errorMessage = "";
         if (TextFieldProfessorNome.getText() == null || TextFieldProfessorNome.getText().length() == 0) {
-            errorMessage += "Nome inválido!\n";
+            errorMessage += "Nome inválido!*\n";
         }
         if ( alterar == false && (validarProfessor.contains(TextFieldProfessorMat.getText()) || TextFieldProfessorMat.getText() == null || TextFieldProfessorMat.getText().length() < 10 || TextFieldProfessorMat.getText().length() > 10 || !TextFieldProfessorMat.getText().matches("[0-9]*"))) {
-            errorMessage += "Matricula já existente!*\n";  
+            errorMessage += "Matricula ja existente\n";  
         }
-        if ( alterar == true && (TextFieldProfessorMat.getText() == null || TextFieldProfessorMat.getText().length() < 10 || TextFieldProfessorMat.getText().length() > 10 || !TextFieldProfessorMat.getText().matches("[0-9]*"))) {
+        if(alterar == true && (TextFieldProfessorMat.getText() == null || TextFieldProfessorMat.getText().length() < 10 || TextFieldProfessorMat.getText().length() > 10 || !TextFieldProfessorMat.getText().matches("[0-9]*"))){
             errorMessage += "Matricula inválida! *Ex: 0123456789 *\n";  
         }
         if (TextFieldProfessorTitulo.getText() == null || TextFieldProfessorTitulo.getText().length() == 0) {
-            errorMessage += "Titulacao inválida!\n";
+            errorMessage += "Titulacao inválida!*\n";
         }
         if (TextFieldProfessorEmail.getText() == null || TextFieldProfessorEmail.getText().length() == 0){
-            errorMessage += "E-mail invalido";
+            errorMessage += "E-mail invalido*\n";
         }
 
         if (errorMessage.length() == 0) {
