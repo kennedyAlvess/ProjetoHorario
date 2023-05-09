@@ -143,9 +143,6 @@ public class ProfessorMenuController implements Initializable{
         controller.setProfessor(professor);
         controller.setLabelTituloProfessor(nome);
         controller.setValidarProfessor(professorDAO.validarProfessorMat());
-        if(nome == "ALTERAR PROFESSOR"){
-            controller.setAlterar(true);
-        }
         dialogStage.showAndWait();
 
         return controller.isBotaoClicado();

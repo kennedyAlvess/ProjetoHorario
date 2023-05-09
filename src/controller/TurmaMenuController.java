@@ -173,14 +173,12 @@ public class TurmaMenuController implements Initializable {
         dialogStage.setResizable(false);
 
         CadastroTurmaController controller = loader.getController();
-        if(nome == "ALTERAR TURMA"){
-            controller.setAlterar(true);
-        }
-        controller.setListaDeTurmas(turmaDAO.validarTurma());
+
         controller.setInteracao(dialogStage);
         controller.setTurma(turma);
         controller.setLabelTituloTurma(nome);
         controller.setListaDeProfessores(turmaDAO.cargaHrProfessor());
+        controller.setListaDeTurmas(turmaDAO.validarTurma());
         
         dialogStage.showAndWait();
 

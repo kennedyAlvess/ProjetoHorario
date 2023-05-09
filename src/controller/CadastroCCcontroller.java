@@ -49,7 +49,6 @@ public class CadastroCCcontroller implements Initializable{
     private boolean botaoConfirmarClicadoCC;
     private ComponenteCurricular componenteCurricular;
     private List<String> validarCC;
-    private boolean alterar;
 
 
     //Preenchendo os ChoiceBox da interface gráfica
@@ -102,23 +101,20 @@ public class CadastroCCcontroller implements Initializable{
     private boolean validarEntradaDeDadosCC() {
         String errorMessage = "";
         if (TextFieldCCnome.getText() == null || TextFieldCCnome.getText().length() == 0) {
-            errorMessage += "Nome inválido!\n";
+            errorMessage += "Nome inválido!*\n";
         }
-        if (TextFieldCCcargahoraria.getText() == null || Integer.parseInt(TextFieldCCcargahoraria.getText()) <= 0 || Integer.parseInt(TextFieldCCcargahoraria.getText()) > 90) {
-            errorMessage += "Carga horaria inválida!*\n";  
+        if (TextFieldCCcargahoraria.getText() == null || TextFieldCCcargahoraria.getText().length() == 0 || Integer.parseInt(TextFieldCCcargahoraria.getText()) <= 0 || Integer.parseInt(TextFieldCCcargahoraria.getText()) > 90) {
+            errorMessage += "Carga horária inválida!*\n";  
         }
-        if ( alterar == false && (validarCC.contains(TextFieldCCcodigo.getText()) || TextFieldCCcodigo.getText() == null || 
-        TextFieldCCcodigo.getText().length() == 0 || TextFieldCCcodigo.getText().length() > 7)) {
-            errorMessage += "Código já vincculado a um componente curricular!\n";
+        if ( validarCC.contains(TextFieldCCcodigo.getText()) || TextFieldCCcodigo.getText() == null || 
+        TextFieldCCcodigo.getText().length() == 0 || TextFieldCCcodigo.getText().length() > 7) {
+            errorMessage += "Código inválido!*\n";
         }
-        if ( alterar == true && (TextFieldCCcodigo.getText() == null || 
-        TextFieldCCcodigo.getText().length() == 0 || TextFieldCCcodigo.getText().length() > 7)) {
-            errorMessage += "Código inválida!\n";
-        }
+       
         if(choiceBoxCC.getValue() == null){
             errorMessage += "Valor inválido! Selecione Obrigatorio/Optativa\n";
         }
-        if(choiceBoxSemestre.getValue() == null){
+        if(choiceBoxSemestre.getValue() == null || choiceBoxSemestre.getValue() == 0){
             errorMessage += "Semestre inválido!\n";
         }
         if (errorMessage.length() == 0) {
@@ -146,9 +142,6 @@ public class CadastroCCcontroller implements Initializable{
     }
     public boolean isBotaoClicadoCC() {
         return botaoConfirmarClicadoCC;
-    }
-    public void setAlterar(boolean alterar) {
-        this.alterar = alterar;
     }
     public void setValidarCC(List<String> validarCC) {
         this.validarCC = validarCC;

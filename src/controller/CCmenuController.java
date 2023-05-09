@@ -170,9 +170,6 @@ public class CCmenuController implements Initializable{
         controller.setCC(componenteCurricular);
         controller.setLabelTituloCC(nome);
         controller.setValidarCC(componenteCurricularDAO.validarCodigoCC());
-        if(nome == "ALTERAR COMPONENTE CURRICULAR"){
-            controller.setAlterar(true);
-        }
         // Mostra o Dialog e espera até que o usuário o feche
         dialogStage.showAndWait();
         return controller.isBotaoClicadoCC();

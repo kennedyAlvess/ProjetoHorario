@@ -9,21 +9,20 @@ public class Turma  implements Serializable{
     private int vagas;
     private String horarios;
     private int turma;
-    private String periodo;
     private String codTurma;
     private String docente;
     private int semestre;
     private int cargahoraria;
 
-    public Turma(int semestre,String docente,String nome, int vagas, String horarios, int turma, String periodo, String codTurma) {
+    public Turma(int cargahoraria,int semestre,String docente,String nome, int vagas, String horarios, int turma, String codTurma) {
         this.docente = docente;
         this.nome = nome;
         this.vagas = vagas;
         this.horarios = horarios;
         this.turma = turma;
-        this.periodo = periodo;
         this.codTurma = codTurma;
         this.semestre = semestre;
+        this.cargahoraria = cargahoraria;
     }
 
     public Turma() {
@@ -77,15 +76,7 @@ public class Turma  implements Serializable{
     public void setTurma(int turma) {
         this.turma = turma;
     }
-
-    public String getPeriodo() {
-        return periodo;
-    }
-
-    public void setPeriodo(String periodo) {
-        this.periodo = periodo;
-    }
-
+    
     public String getDocente() {
         return docente;
     }

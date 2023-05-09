@@ -40,7 +40,6 @@ public class CadastroProfessorController implements Initializable {
     private Stage interacao;
     private boolean botaoConfirmarClicado;
     private Professor professor;
-    private boolean alterar;
     private List<String> validarProfessor;
     
     @Override
@@ -77,17 +76,14 @@ public class CadastroProfessorController implements Initializable {
         if (TextFieldProfessorNome.getText() == null || TextFieldProfessorNome.getText().length() == 0) {
             errorMessage += "Nome inválido!*\n";
         }
-        if ( alterar == false && (validarProfessor.contains(TextFieldProfessorMat.getText()) || TextFieldProfessorMat.getText() == null || TextFieldProfessorMat.getText().length() < 10 || TextFieldProfessorMat.getText().length() > 10 || !TextFieldProfessorMat.getText().matches("[0-9]*"))) {
-            errorMessage += "Matricula ja existente\n";  
-        }
-        if(alterar == true && (TextFieldProfessorMat.getText() == null || TextFieldProfessorMat.getText().length() < 10 || TextFieldProfessorMat.getText().length() > 10 || !TextFieldProfessorMat.getText().matches("[0-9]*"))){
-            errorMessage += "Matricula inválida! *Ex: 0123456789 *\n";  
+        if (validarProfessor.contains(TextFieldProfessorMat.getText()) || TextFieldProfessorMat.getText() == null || TextFieldProfessorMat.getText().length() < 10 || TextFieldProfessorMat.getText().length() > 10 || !TextFieldProfessorMat.getText().matches("[0-9]*")) {
+            errorMessage += "Matrícula inválida!*\n";  
         }
         if (TextFieldProfessorTitulo.getText() == null || TextFieldProfessorTitulo.getText().length() == 0) {
-            errorMessage += "Titulacao inválida!*\n";
+            errorMessage += "Titulação inválida!*\n";
         }
         if (TextFieldProfessorEmail.getText() == null || TextFieldProfessorEmail.getText().length() == 0){
-            errorMessage += "E-mail invalido*\n";
+            errorMessage += "E-mail inválido*\n";
         }
 
         if (errorMessage.length() == 0) {
@@ -102,8 +98,6 @@ public class CadastroProfessorController implements Initializable {
             return false;
         }
     }
-
-
     public void setLabelTituloProfessor(String titulo) {
         this.labelTituloProfessor.setText(titulo);
     }
@@ -121,9 +115,6 @@ public class CadastroProfessorController implements Initializable {
     }
     public Professor getProfessor() {
         return professor;
-    }
-    public void setAlterar(boolean alterar) {
-        this.alterar = alterar;
     }
     public void setValidarProfessor(List<String> validarProfessor) {
         this.validarProfessor = validarProfessor;
