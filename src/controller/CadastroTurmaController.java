@@ -44,6 +44,7 @@ public class CadastroTurmaController implements Initializable {
     private Turma turma;
     private List<Turma> listaDeTurmas;
     private List<String> listaDeProfessores;
+    private boolean alterar;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -87,75 +88,80 @@ public class CadastroTurmaController implements Initializable {
         String errorMessage = "";
         String choqueHorario = "";
         
-        if (listaDeProfessores.contains(TextFieldTurmaDocente.getText())) {
-            errorMessage += "Professor com carga horária semanal lotada!\n";
+        if(alterar){
+
+        }else{
+            if (listaDeProfessores.contains(TextFieldTurmaDocente.getText())) {
+                errorMessage += "Professor com carga horária semanal lotada!\n";
+            }
+            for (Turma turma : listaDeTurmas) {
+                String horarioText="",horarioTurma ="";
+                if(Integer.parseInt(TextFieldTurmaSemestre.getText()) == turma.getSemestre() && Integer.parseInt(TextFieldTurmaTurma.getText()) == turma.getTurma() || turma.getDocente().equals(TextFieldTurmaDocente.getText())){
+                    if(TextFieldTurmaHorario.getText() == null || (TextFieldTurmaHorario.getText().length() !=9 && TextFieldTurmaHorario.getText().length() != 5 && TextFieldTurmaHorario.getText().length() != 6 )){
+                        if(TextFieldTurmaHorario.getText() == null){
+                            break;
+                        }else{
+                            errorMessage += "Horário inválido!*\n";
+                        }
+                        break;    
+                    }else{
+                        if(TextFieldTurmaHorario.getText().length() == 5 || turma.getHorarios().length() == 5){
+                            if(TextFieldTurmaHorario.getText().length() == 5){
+                                horarioText = (TextFieldTurmaHorario.getText().substring(0, 1)+TextFieldTurmaHorario.getText().substring(2, 5))+" "+TextFieldTurmaHorario.getText().substring(1, 5);
+                            }if(turma.getHorarios().length() == 5){
+                                horarioTurma = turma.getHorarios().substring(0, 1)+turma.getHorarios().substring(2, 5)+" "+turma.getHorarios().substring(1, 5);
+                            }
+                        }
+                        if(TextFieldTurmaHorario.getText().length() == 6 || turma.getHorarios().length() == 6){
+                                if(TextFieldTurmaHorario.getText().length() == 6){
+                                    horarioText = TextFieldTurmaHorario.getText().substring(0, 2)+TextFieldTurmaHorario.getText().substring(4, 6)+" "+TextFieldTurmaHorario.getText().substring(0, 4);
+                                }if(turma.getHorarios().length() == 6){
+                                    horarioTurma = turma.getHorarios().substring(0, 2)+turma.getHorarios().substring(4, 6)+" "+turma.getHorarios().substring(0, 4);
+                                }    
+                        }
+                        if(TextFieldTurmaHorario.getText().length() == 9 || turma.getHorarios().length() == 9){
+                                if(TextFieldTurmaHorario.getText().length() == 9){
+                                    horarioText = TextFieldTurmaHorario.getText();
+                                }
+                                if(turma.getHorarios().length() == 9){
+                                    horarioTurma = turma.getHorarios();
+                                }
+                            }
+                        if(horarioTurma.contains(horarioText.substring(0, 4)) || horarioTurma.contains(horarioText.substring(5, 9))){
+                                choqueHorario += "Choque de horário!*\n";
+                        }
+                    }
+                }
+            }
         }
+        
         if (TextFieldTurmaNome.getText() == null || TextFieldTurmaNome.getText().length() == 0) {
             errorMessage += "Nome inválido!*\n";
         }
-        if (TextFieldTurmaCodigo.getText() == null || TextFieldTurmaCodigo.getText().length() == 0) {
+        if (TextFieldTurmaCodigo.getText() == null || TextFieldTurmaCodigo.getText().length() != 7) {
             errorMessage += "Código inválido!*\n";
         }
         if (TextFieldTurmaDocente.getText() == null || TextFieldTurmaDocente.getText().length() == 0) {
             errorMessage += "Docente inválido!*\n";
         }
-        if (TextFieldTurmaTurma.getText() == null || Integer.parseInt(TextFieldTurmaTurma.getText()) == 0 || TextFieldTurmaTurma.getText().length() == 0) {
+        if (TextFieldTurmaTurma.getText() == null || TextFieldTurmaTurma.getText().length() == 0 || TextFieldTurmaTurma.getText().equals("0")) {
             errorMessage += "Turma inválida!*\n";
         }
-        if (TextFieldTurmaVagas.getText() == null || Integer.parseInt(TextFieldTurmaVagas.getText()) == 0 || Integer.parseInt(TextFieldTurmaVagas.getText()) == 0) {
+        if (TextFieldTurmaVagas.getText() == null || TextFieldTurmaVagas.getText().length() == 0 || TextFieldTurmaVagas.getText().equals("0") ) {
             errorMessage += "Vagas inválidas!*\n";
         }
-        if (TextFieldTurmaSemestre.getText() == null || TextFieldTurmaSemestre.getText().length() == 0
-                || Integer.parseInt(TextFieldTurmaSemestre.getText()) == 0) {
+        if (TextFieldTurmaSemestre.getText() == null  || TextFieldTurmaSemestre.getText().length() == 0
+                || !TextFieldTurmaSemestre.getText().matches("[1-6]*")) {
             errorMessage += "Semestre inválido!*\n";
         }
-        if (TextFieldTurmaHorario.getText() == null || TextFieldTurmaHorario.getText().length() == 0) {
+        if (TextFieldTurmaHorario.getText() == null || TextFieldTurmaHorario.getText().length() <5 || TextFieldTurmaHorario.getText().length() > 9) {
             errorMessage += "Horário inválido!*\n";
         }
-        if (TextFieldTurmaHora.getText() == null || Integer.parseInt(TextFieldTurmaHora.getText()) == 0 || TextFieldTurmaHora.getText().length() == 0) {
+        if (TextFieldTurmaHora.getText() == null || Integer.parseInt(TextFieldTurmaHora.getText()) <= 0 || TextFieldTurmaHora.getText().length() == 0) {
             errorMessage += "Carga horária inválida!*\n";
         }
         
-        for (Turma turma : listaDeTurmas) {
-            String horarioText="",horarioTurma ="";
-            if(Integer.parseInt(TextFieldTurmaSemestre.getText()) == turma.getSemestre() && Integer.parseInt(TextFieldTurmaTurma.getText()) == turma.getTurma() || turma.getDocente().equals(TextFieldTurmaDocente.getText())){
-                if(TextFieldTurmaHorario.getText() == null || (TextFieldTurmaHorario.getText().length() !=9 && TextFieldTurmaHorario.getText().length() != 5 && TextFieldTurmaHorario.getText().length() != 6 )){
-                    if(TextFieldTurmaHorario.getText() == null){
-                        break;
-                    }else{
-                        errorMessage += "Horário inválido!*\n";
-                    }
-                    break;    
-                }else{
-                    if(TextFieldTurmaHorario.getText().length() == 5 || turma.getHorarios().length() == 5){
-                        if(TextFieldTurmaHorario.getText().length() == 5){
-                            horarioText = (TextFieldTurmaHorario.getText().substring(0, 1)+TextFieldTurmaHorario.getText().substring(2, 5))+" "+TextFieldTurmaHorario.getText().substring(1, 5);
-                        }if(turma.getHorarios().length() == 5){
-                            horarioTurma = turma.getHorarios().substring(0, 1)+turma.getHorarios().substring(2, 5)+" "+turma.getHorarios().substring(1, 5);
-                        }
-                    }
-                    if(TextFieldTurmaHorario.getText().length() == 6 || turma.getHorarios().length() == 6){
-                            if(TextFieldTurmaHorario.getText().length() == 6){
-                                horarioText = TextFieldTurmaHorario.getText().substring(0, 2)+TextFieldTurmaHorario.getText().substring(4, 6)+" "+TextFieldTurmaHorario.getText().substring(0, 4);
-                            }if(turma.getHorarios().length() == 6){
-                                horarioTurma = turma.getHorarios().substring(0, 2)+turma.getHorarios().substring(4, 6)+" "+turma.getHorarios().substring(0, 4);
-                            }    
-                    }
-                    if(TextFieldTurmaHorario.getText().length() == 9 || turma.getHorarios().length() == 9){
-                            if(TextFieldTurmaHorario.getText().length() == 9){
-                                horarioText = TextFieldTurmaHorario.getText();
-                            }
-                            if(turma.getHorarios().length() == 9){
-                                horarioTurma = turma.getHorarios();
-                            }
-                        }
-                    if(horarioTurma.contains(horarioText.substring(0, 4)) || horarioTurma.contains(horarioText.substring(5, 9))){
-                            choqueHorario += "Choque de horário!*\n";
-                    }
-                }
-            }
-
-        }
+        
         
         if (errorMessage.length() == 0 && choqueHorario.length() == 0) {
             return true;
@@ -201,5 +207,8 @@ public class CadastroTurmaController implements Initializable {
 
     public void setListaDeProfessores(List<String> listaDeProfessores) {
         this.listaDeProfessores = listaDeProfessores;
+    }
+    public void setAlterar(boolean alterar) {
+        this.alterar = alterar;
     }
 }

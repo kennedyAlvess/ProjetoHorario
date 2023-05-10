@@ -49,7 +49,7 @@ public class CadastroCCcontroller implements Initializable{
     private boolean botaoConfirmarClicadoCC;
     private ComponenteCurricular componenteCurricular;
     private List<String> validarCC;
-
+    private boolean alterar;
 
     //Preenchendo os ChoiceBox da interface gráfica
     private ObservableList<String> choiceBoxList = FXCollections.observableArrayList("Obrigatoria","Optativa");
@@ -100,15 +100,21 @@ public class CadastroCCcontroller implements Initializable{
     //Validando o preenchimento dos dados
     private boolean validarEntradaDeDadosCC() {
         String errorMessage = "";
+        if(alterar){
+            if ( TextFieldCCcodigo.getText() == null || TextFieldCCcodigo.getText().length() != 7) {
+            errorMessage += "Código inválido!*\n";
+        }
+        }else{
+            if ( validarCC.contains(TextFieldCCcodigo.getText()) || TextFieldCCcodigo.getText() == null || 
+        TextFieldCCcodigo.getText().length() != 7) {
+            errorMessage += "Código inválido!*\n";
+        }
+        }
         if (TextFieldCCnome.getText() == null || TextFieldCCnome.getText().length() == 0) {
             errorMessage += "Nome inválido!*\n";
         }
-        if (TextFieldCCcargahoraria.getText() == null || TextFieldCCcargahoraria.getText().length() == 0 || Integer.parseInt(TextFieldCCcargahoraria.getText()) <= 0 || Integer.parseInt(TextFieldCCcargahoraria.getText()) > 90) {
+        if (TextFieldCCcargahoraria.getText() == null || TextFieldCCcargahoraria.getText().length() == 0 || Integer.parseInt(TextFieldCCcargahoraria.getText()) <= 0) {
             errorMessage += "Carga horária inválida!*\n";  
-        }
-        if ( validarCC.contains(TextFieldCCcodigo.getText()) || TextFieldCCcodigo.getText() == null || 
-        TextFieldCCcodigo.getText().length() == 0 || TextFieldCCcodigo.getText().length() > 7) {
-            errorMessage += "Código inválido!*\n";
         }
        
         if(choiceBoxCC.getValue() == null){
@@ -145,6 +151,9 @@ public class CadastroCCcontroller implements Initializable{
     }
     public void setValidarCC(List<String> validarCC) {
         this.validarCC = validarCC;
+    }
+    public void setAlterar(boolean alterar) {
+        this.alterar = alterar;
     }
 
 }

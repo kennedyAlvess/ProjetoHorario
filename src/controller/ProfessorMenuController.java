@@ -139,6 +139,11 @@ public class ProfessorMenuController implements Initializable{
         dialogStage.setResizable(false);
         
         CadastroProfessorController controller = loader.getController();
+        if(nome.equals("ALTERAR PROFESSOR")){
+            controller.setAlterar(true);
+        }else{
+            controller.setAlterar(false);
+        }
         controller.setInteracao(dialogStage);
         controller.setProfessor(professor);
         controller.setLabelTituloProfessor(nome);

@@ -5,6 +5,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -166,6 +167,11 @@ public class CCmenuController implements Initializable{
         dialogStage.setResizable(false);
         // Setando o cliente no Controller.
         CadastroCCcontroller controller = loader.getController();
+        if(nome.equals("ALTERAR COMPONENTE CURRICULAR")){
+            controller.setAlterar(true);
+        }else{
+            controller.setAlterar(false);
+        }
         controller.setInteracaoCC(dialogStage);
         controller.setCC(componenteCurricular);
         controller.setLabelTituloCC(nome);

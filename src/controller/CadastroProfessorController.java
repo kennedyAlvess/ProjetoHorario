@@ -3,6 +3,7 @@ package controller;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -41,7 +42,8 @@ public class CadastroProfessorController implements Initializable {
     private boolean botaoConfirmarClicado;
     private Professor professor;
     private List<String> validarProfessor;
-    
+    private boolean alterar;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
@@ -73,12 +75,19 @@ public class CadastroProfessorController implements Initializable {
 
     private boolean validarEntradaDeDados() {
         String errorMessage = "";
+        if(alterar){
+            if (TextFieldProfessorMat.getText() == null || TextFieldProfessorMat.getText().length() != 10 || !TextFieldProfessorMat.getText().matches("[0-9]*")) {
+                errorMessage += "Matrícula inválida!*\n";  
+            }
+        }else{
+            if (validarProfessor.contains(TextFieldProfessorMat.getText()) || TextFieldProfessorMat.getText() == null || TextFieldProfessorMat.getText().length() != 10 || !TextFieldProfessorMat.getText().matches("[0-9]*")) {
+                errorMessage += "Matrícula inválida!*\n";  
+            }
+        }
         if (TextFieldProfessorNome.getText() == null || TextFieldProfessorNome.getText().length() == 0) {
             errorMessage += "Nome inválido!*\n";
         }
-        if (validarProfessor.contains(TextFieldProfessorMat.getText()) || TextFieldProfessorMat.getText() == null || TextFieldProfessorMat.getText().length() < 10 || TextFieldProfessorMat.getText().length() > 10 || !TextFieldProfessorMat.getText().matches("[0-9]*")) {
-            errorMessage += "Matrícula inválida!*\n";  
-        }
+        
         if (TextFieldProfessorTitulo.getText() == null || TextFieldProfessorTitulo.getText().length() == 0) {
             errorMessage += "Titulação inválida!*\n";
         }
@@ -118,6 +127,9 @@ public class CadastroProfessorController implements Initializable {
     }
     public void setValidarProfessor(List<String> validarProfessor) {
         this.validarProfessor = validarProfessor;
+    }
+    public void setAlterar(boolean alterar) {
+        this.alterar = alterar;
     }
 
 }

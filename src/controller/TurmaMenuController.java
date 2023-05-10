@@ -123,7 +123,7 @@ public class TurmaMenuController implements Initializable {
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Por favor, escolha um Componente Curricular na Tabela!");
+            alert.setContentText("Por favor, escolha uam turma na Tabela!");
             alert.show();
         }
     }
@@ -180,7 +180,11 @@ public class TurmaMenuController implements Initializable {
         dialogStage.setResizable(false);
 
         CadastroTurmaController controller = loader.getController();
-
+        if(nome.equals("ALTERAR TURMA")){
+            controller.setAlterar(true);
+        }else{
+            controller.setAlterar(false);
+        }
         controller.setInteracao(dialogStage);
         controller.setTurma(turma);
         controller.setLabelTituloTurma(nome);
