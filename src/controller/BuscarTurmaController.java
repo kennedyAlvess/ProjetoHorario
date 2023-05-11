@@ -636,34 +636,34 @@ public class BuscarTurmaController implements Initializable {
                         }
                     }
                 }
-                if (listHorarios.get(i).getHorarios().substring(5, 6).matches("7")) {
-                    if (listHorarios.get(i).getHorarios().substring(6, 7).matches("M")) {
-                        if (listHorarios.get(i).getHorarios().substring(7, 9).matches("12")) {
+                if (horarioText.substring(5, 6).matches("7")) {
+                    if (horarioText.substring(6, 7).matches("M")) {
+                        if (horarioText.substring(7, 9).matches("12")) {
                             label7M1.setText(listHorarios.get(i).getCodTurma());
                             label7M2.setText(listHorarios.get(i).getCodTurma());
-                        } else if (listHorarios.get(i).getHorarios().substring(7, 9).matches("34")) {
+                        } else if (horarioText.substring(7, 9).matches("34")) {
                             label7M3.setText(listHorarios.get(i).getCodTurma());
                             label7M4.setText(listHorarios.get(i).getCodTurma());
-                        } else if (listHorarios.get(i).getHorarios().substring(7, 9).matches("56")) {
+                        } else if (horarioText.substring(7, 9).matches("56")) {
                             label7M5.setText(listHorarios.get(i).getCodTurma());
                             label7M6.setText(listHorarios.get(i).getCodTurma());
                         }
-                    } else if (listHorarios.get(i).getHorarios().substring(6, 7).matches("T")) {
-                        if (listHorarios.get(i).getHorarios().substring(7, 9).matches("12")) {
+                    } else if (horarioText.substring(6, 7).matches("T")) {
+                        if (horarioText.substring(7, 9).matches("12")) {
                             label7T1.setText(listHorarios.get(i).getCodTurma());
                             label7T2.setText(listHorarios.get(i).getCodTurma());
-                        } else if (listHorarios.get(i).getHorarios().substring(7, 9).matches("34")) {
+                        } else if (horarioText.substring(7, 9).matches("34")) {
                             label7T3.setText(listHorarios.get(i).getCodTurma());
                             label7T4.setText(listHorarios.get(i).getCodTurma());
-                        } else if (listHorarios.get(i).getHorarios().substring(7, 9).matches("56")) {
+                        } else if (horarioText.substring(7, 9).matches("56")) {
                             label7T5.setText(listHorarios.get(i).getCodTurma());
                             label7T6.setText(listHorarios.get(i).getCodTurma());
                         }
-                    } else if (listHorarios.get(i).getHorarios().substring(6, 7).matches("N")) {
-                        if (listHorarios.get(i).getHorarios().substring(7, 9).matches("12")) {
+                    } else if (horarioText.substring(6, 7).matches("N")) {
+                        if (horarioText.substring(7, 9).matches("12")) {
                             label7N1.setText(listHorarios.get(i).getCodTurma());
                             label7N2.setText(listHorarios.get(i).getCodTurma());
-                        } else if (listHorarios.get(i).getHorarios().substring(7, 9).matches("34")) {
+                        } else if (horarioText.substring(7, 9).matches("34")) {
                             label7N3.setText(listHorarios.get(i).getCodTurma());
                             label7N4.setText(listHorarios.get(i).getCodTurma());
                         }
