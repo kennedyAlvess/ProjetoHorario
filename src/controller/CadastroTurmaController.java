@@ -88,9 +88,7 @@ public class CadastroTurmaController implements Initializable {
         String errorMessage = "";
         String choqueHorario = "";
         
-        if(alterar){
-
-        }else{
+        if(alterar == false){
             if (listaDeProfessores.contains(TextFieldTurmaDocente.getText())) {
                 errorMessage += "Professor com carga horária semanal lotada!\n";
             }
@@ -102,8 +100,8 @@ public class CadastroTurmaController implements Initializable {
                             break;
                         }else{
                             errorMessage += "Horário inválido!*\n";
+                            break;    
                         }
-                        break;    
                     }else{
                         if(TextFieldTurmaHorario.getText().length() == 5 || turma.getHorarios().length() == 5){
                             if(TextFieldTurmaHorario.getText().length() == 5){
