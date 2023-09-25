@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+   <children>
+      <MenuBar style="-fx-border-color: #000000; -fx-border-radius: 45px;">
+        <menus>
+          <Menu mnemonicParsing="false" text="Professores">
+            <items>
+                  <MenuItem fx:id="menuListaProfessores" mnemonicParsing="false" onAction="#handleMenuCadastroProfessor" text="Lista de professores" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Componentes curriculares">
+            <items>
+                  <MenuItem fx:id="menuVisualizarCC" mnemonicParsing="false" onAction="#handleMenuCC" text="Visualizar componentes curriculares" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Turmas">
+            <items>
+                  <MenuItem fx:id="menuConsultarTurmas" mnemonicParsing="false" onAction="#handleMenuTurma" text="Listar" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <AnchorPane fx:id="anchorPane" prefHeight="420.0" prefWidth="750.0" style="-fx-border-color: #000000;">
+         <children>
+            <ImageView fitHeight="373.0" fitWidth="750.0" pickOnBounds="true" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="0.0">
+               <image>
+                  <Image url="@../img/engsoft.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+   </children>
+</VBox>

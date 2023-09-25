@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #F0FFF0; -fx-border-color: #000000;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroTurmaController">
+   <children>
+      <GridPane layoutX="50.0" layoutY="164.0" prefHeight="150.0" prefWidth="500.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="175.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="70.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="268.0" minWidth="10.0" prefWidth="259.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="153.0" minWidth="10.0" prefWidth="78.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="0.0" prefWidth="77.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Docente:" GridPane.rowIndex="1" />
+            <Label maxWidth="1.7976931348623157E308" prefWidth="0.0" text="Turma:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label maxWidth="1.7976931348623157E308" prefWidth="0.0" text="Vagas:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="TextFieldTurmaDocente" maxWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="TextFieldTurmaTurma" maxWidth="50.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <TextField fx:id="TextFieldTurmaVagas" maxWidth="50.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" prefHeight="24.0" prefWidth="0.0" text="Carga Horaria:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField fx:id="TextFieldTurmaHora" alignment="TOP_LEFT" maxWidth="50.0" prefWidth="81.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label prefHeight="25.0" prefWidth="43.0" text="Horário:" GridPane.rowIndex="2" />
+            <TextField fx:id="TextFieldTurmaHorario" maxWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="70.0" text="Semestre:" GridPane.rowIndex="3" />
+            <TextField fx:id="TextFieldTurmaSemestre" maxWidth="50.0" prefHeight="25.0" prefWidth="70.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Disciplina:" />
+            <TextField fx:id="TextFieldTurmaNome" maxWidth="250.0" prefHeight="25.0" prefWidth="88.0" GridPane.columnIndex="1" />
+            <Label maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="0.0" text="Código:" GridPane.columnIndex="2" />
+            <TextField fx:id="TextFieldTurmaCodigo" prefHeight="25.0" prefWidth="59.0" GridPane.columnIndex="3" />
+         </children>
+      </GridPane>
+      <Group layoutX="223.0" layoutY="439.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="400.0">
+         <children>
+            <Button fx:id="botaoConfirmar" layoutX="107.0" mnemonicParsing="false" onAction="#handleBotaoConfirmar" prefHeight="25.0" prefWidth="70.0" text="Confirmar" />
+            <Button fx:id="botaoCancelar" mnemonicParsing="false" onAction="#handleBotaoCancelar" prefHeight="25.0" prefWidth="70.0" text="Cancelar" />
+         </children>
+      </Group>
+      <Label fx:id="labelTituloTurma" layoutX="192.0" layoutY="33.0" prefHeight="30.0" prefWidth="204.0" text="CADASTRAR TURMA" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="198.0" AnchorPane.topAnchor="50.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
