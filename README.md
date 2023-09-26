@@ -1,10 +1,10 @@
-# Este projeto consiste na elaboração de um programa para gerenciar os horários de um semestre das turmas do curso do Bacharelado em Tecnologia da Informação (BTI) do Campus Pau dos Ferros (CMPF) da Universidade Federal Rural do Semi-Árido (UFERSA).
+<h1> Este projeto consiste na elaboração de um programa para gerenciar os horários de um semestre das turmas do curso do Bacharelado em Tecnologia da Informação (BTI) do Campus Pau dos Ferros (CMPF) da Universidade Federal Rural do Semi-Árido (UFERSA).</h1>
 
-## Para ser possível a execução é necessario a criação de um banco de dados que atenda os requisito da aplicação.
+<h2> Para ser possível a execução é necessario a criação de um banco de dados que atenda os requisito da aplicação.</h2>
 
-* ## Configurando o banco de dados.
+## **1. Configurando o banco de dados.**
 
-### **1. Criando Banco de dados.**
+* ### Criando Banco de dados.
 ~~~SQL
     CREATE DATABASE "BDprojeto"
     WITH
@@ -17,7 +17,7 @@
     IS_TEMPLATE = False;
 ~~~
 
-### **2. Criando tabela Componente Curricular.**
+* ### Criando tabela Componente Curricular.
 ~~~SQL
 CREATE TABLE IF NOT EXISTS public.componentecurricular
 (
@@ -34,7 +34,7 @@ TABLESPACE pg_default;
 ALTER TABLE IF EXISTS public.componentecurricular
     OWNER to postgres;
 ~~~
-### **3. Criando tabela Professores.**
+* ### Criando tabela Professores.
 ~~~SQL
 CREATE TABLE IF NOT EXISTS public.professores
 (
@@ -51,7 +51,7 @@ TABLESPACE pg_default;
 ALTER TABLE IF EXISTS public.professores
     OWNER to postgres;
 ~~~
-### **4. Criando tabela Turmas.**
+* ### Criando tabela Turmas.
 ~~~SQL
 CREATE TABLE IF NOT EXISTS public.turmas
 (
@@ -71,27 +71,29 @@ ALTER TABLE IF EXISTS public.turmas
     OWNER to postgres;
 ~~~
 ---
-* ## Preenchendo as tabelas com dados para teste
-### **1. INSERT script tabela Componente Curricular.**
+## **2. Preenchendo as tabelas com dados para teste.**
+
+* ### INSERT script tabela Componente Curricular.
 ~~~SQL
 INSERT INTO public.componentecurricular(
 	nomecc, cargahorariacc, codigocc, semestre, obrigatoriedade)
 	VALUES (?, ?, ?, ?, ?);
 ~~~
-### **2. INSERT script tabela Professores.**
+
+* ### INSERT script tabela Professores.
 ~~~SQL
 INSERT INTO public.professores(
 	nome, matricula, titulacao, email, cargahoraria)
 	VALUES (?, ?, ?, ?, ?);
 ~~~
-### **3. INSERT script tabela Turmas.**
+* ### INSERT script tabela Turmas.
 ~~~SQL
 INSERT INTO public.turmas(
 	codigo, nomecc, horario, turm, vagas, semestre, docente, cargahoraria)
 	VALUES (?, ?, ?, ?, ?, ?, ?, ?);
 ~~~
 ---
-* ## Altere a conexão com o banco de dados conforme suas configurações.
+## **3. Altere a conexão com o banco de dados conforme suas configurações.**
 ~~~JAVA
 this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDprojeto","seu_user","sua_senha");
 ~~~
