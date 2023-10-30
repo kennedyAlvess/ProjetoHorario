@@ -51,9 +51,9 @@ public class CadastroProfessorController implements Initializable {
     @FXML
     public void handleBotaoConfirmar(){
         if (validarEntradaDeDados()) {
-            professor.setNome(TextFieldProfessorNome.getText());
+            professor.setNome(TextFieldProfessorNome.getText().toUpperCase());
             professor.setMatricula(TextFieldProfessorMat.getText());
-            professor.setTitulacao(TextFieldProfessorTitulo.getText());
+            professor.setTitulacao(TextFieldProfessorTitulo.getText().toLowerCase());
             professor.setEmail(TextFieldProfessorEmail.getText());
             botaoConfirmarClicado = true;
             interacao.close();

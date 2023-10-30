@@ -54,10 +54,10 @@ public class CadastroTurmaController implements Initializable {
     @FXML
     public void handleBotaoConfirmar() {
         if (validarEntradaDeDados()) {
-            turma.setCodTurma(TextFieldTurmaCodigo.getText());
-            turma.setNome(TextFieldTurmaNome.getText());
-            turma.setDocente(TextFieldTurmaDocente.getText());
-            turma.setHorarios(TextFieldTurmaHorario.getText());
+            turma.setCodTurma(TextFieldTurmaCodigo.getText().toUpperCase());
+            turma.setNome(TextFieldTurmaNome.getText().toUpperCase());
+            turma.setDocente(TextFieldTurmaDocente.getText().toUpperCase());
+            turma.setHorarios(TextFieldTurmaHorario.getText().toUpperCase());
             turma.setVagas(Integer.parseInt(TextFieldTurmaVagas.getText()));
             turma.setTurma(Integer.parseInt(TextFieldTurmaTurma.getText()));
             turma.setCargahoraria(Integer.parseInt(TextFieldTurmaHora.getText()));

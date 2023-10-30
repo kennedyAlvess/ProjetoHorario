@@ -63,11 +63,11 @@ public class CadastroCCcontroller implements Initializable{
     @FXML
     public void handleBotaoConfirmarCC(){ 
         if (validarEntradaDeDadosCC()) {
-            componenteCurricular.setNome(TextFieldCCnome.getText());
+            componenteCurricular.setNome(TextFieldCCnome.getText().toUpperCase());
             componenteCurricular.setCargaHoraria(Integer.parseInt(TextFieldCCcargahoraria.getText()));
-            componenteCurricular.setCodigo(TextFieldCCcodigo.getText());
+            componenteCurricular.setCodigo(TextFieldCCcodigo.getText().toUpperCase());
             componenteCurricular.setSemestre(choiceBoxSemestre.getValue());
-            componenteCurricular.setObrigatoriedade(choiceBoxCC.getValue());
+            componenteCurricular.setObrigatoriedade(choiceBoxCC.getValue().toUpperCase());
             botaoConfirmarClicadoCC = true;
             interacao.close();
         }
@@ -99,10 +99,10 @@ public class CadastroCCcontroller implements Initializable{
             errorMessage += "Código inválido!*\n";
         }
         }
-        if (TextFieldCCnome.getText() == null || TextFieldCCnome.getText().length() == 0) {
+        if (TextFieldCCnome.getText() == null || TextFieldCCnome.getText().isEmpty()) {
             errorMessage += "Nome inválido!*\n";
         }
-        if (TextFieldCCcargahoraria.getText() == null || TextFieldCCcargahoraria.getText().length() == 0 || Integer.parseInt(TextFieldCCcargahoraria.getText()) <= 0) {
+        if (TextFieldCCcargahoraria.getText() == null || TextFieldCCcargahoraria.getText().isEmpty() || Integer.parseInt(TextFieldCCcargahoraria.getText()) <= 0) {
             errorMessage += "Carga horária inválida!*\n";  
         }
        
@@ -112,7 +112,7 @@ public class CadastroCCcontroller implements Initializable{
         if(choiceBoxSemestre.getValue() == null || choiceBoxSemestre.getValue() == 0){
             errorMessage += "Semestre inválido!\n";
         }
-        if (errorMessage.length() == 0) {
+        if (errorMessage.isEmpty()) {
             return true;
         } else {
             // Mostrando a mensagem de erro
