@@ -1,7 +1,6 @@
 package controller;
 
 import java.net.URL;
-import java.sql.Connection;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -17,7 +16,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import model.dao.TurmasDAO;
-import model.database.DatabasePostgreSQL;
 import model.entidades.Turma;
 
 public class BuscarTurmaController implements Initializable {
@@ -30,31 +28,27 @@ public class BuscarTurmaController implements Initializable {
 
     private Stage interacao;
 
-    private final TurmasDAO turmaDAO = new TurmasDAO();
-    private final DatabasePostgreSQL database = new DatabasePostgreSQL();
-    private final Connection connection = database.conectar();
 
-    private final ObservableList<String> choiceBoxBuscarList = FXCollections.observableArrayList("Todos", "1", "2", "3", "4",
+    private final ObservableList<String> choiceBoxBuscarList = FXCollections.observableArrayList("Semestre", "1", "2", "3", "4",
             "5", "6");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        turmaDAO.setConnection(connection);
         choiceBoxBuscar.setItems(choiceBoxBuscarList);
-        choiceBoxBuscar.setValue("Todos");
+        choiceBoxBuscar.setValue("Semestre");
     }
 
     public void handleBotaoPesquisar() {
         limparTelaHorario();
         List<Turma> listHorarios;
-        if (!choiceBoxBuscar.getValue().equals("Todos") && TextFieldBuscar.getText().isEmpty()){
-            listHorarios = turmaDAO.horariosSemestre(Integer.parseInt(choiceBoxBuscar.getValue()));
+        if (!choiceBoxBuscar.getValue().equals("Semestre") && TextFieldBuscar.getText().isEmpty()){
+            listHorarios = TurmasDAO.horariosSemestre(Integer.parseInt(choiceBoxBuscar.getValue()));
 
             for(Turma turma : listHorarios){
                 showHorario(turma.getHorarios(),turma.getCodTurma());
             }
-        }else if(!TextFieldBuscar.getText().isEmpty() && choiceBoxBuscar.getValue().equals("Todos")){
-            listHorarios = turmaDAO.horariosDocente(TextFieldBuscar.getText().toUpperCase());
+        }else if(!TextFieldBuscar.getText().isEmpty() && choiceBoxBuscar.getValue().equals("Semestre")){
+            listHorarios = TurmasDAO.horariosDocente(TextFieldBuscar.getText().toUpperCase());
 
             for(Turma turma : listHorarios){
                 showHorario(turma.getHorarios(),turma.getCodTurma());

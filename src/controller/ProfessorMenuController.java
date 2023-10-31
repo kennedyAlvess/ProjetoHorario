@@ -1,12 +1,10 @@
 package controller;
 
 import model.dao.ProfessorDAO;
-import model.database.DatabasePostgreSQL;
 import model.entidades.Professor;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -48,14 +46,9 @@ public class ProfessorMenuController implements Initializable{
 
     private List<Professor> listProfessores; 
     private ObservableList<Professor> observableListProfessores;
-
-    private final DatabasePostgreSQL database = new DatabasePostgreSQL();
-    private final Connection connection = database.conectar();
-    private final ProfessorDAO professorDAO = new ProfessorDAO();
     
     @Override
     public void initialize(URL url, ResourceBundle resources) {
-        professorDAO.setConnection(connection);
         carregarTableViewProfessor();
         tableViewProfessor.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue
         ) -> selecionarItemTableViewProfessor(newValue));
@@ -63,7 +56,7 @@ public class ProfessorMenuController implements Initializable{
 
     public void carregarTableViewProfessor(){
         colunaNomeProfessor.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        listProfessores = professorDAO.listar();
+        listProfessores = ProfessorDAO.listar();
         observableListProfessores = FXCollections.observableArrayList(listProfessores);
         tableViewProfessor.setItems(observableListProfessores);
     }
@@ -88,7 +81,7 @@ public class ProfessorMenuController implements Initializable{
         Professor professor = new Professor();
         boolean botaoConfirmarClicado = showCadastroProfessor(professor,nome);
         if (botaoConfirmarClicado) {
-            professorDAO.inserir(professor);
+            ProfessorDAO.inserir(professor);
             carregarTableViewProfessor();
         }
     }
@@ -100,7 +93,7 @@ public class ProfessorMenuController implements Initializable{
         if (professor != null) {
             boolean botaoConfirmarClicado = showCadastroProfessor(professor,nome);
             if (botaoConfirmarClicado) {
-                professorDAO.alterar(professor);
+                ProfessorDAO.alterar(professor);
                 carregarTableViewProfessor();
             }
         } else {
@@ -114,7 +107,7 @@ public class ProfessorMenuController implements Initializable{
     public void handleBotaoRemover() throws IOException {
         Professor professor = tableViewProfessor.getSelectionModel().getSelectedItem();
         if (professor != null) {
-            professorDAO.remover(professor);
+            ProfessorDAO.remover(professor);
             carregarTableViewProfessor();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setContentText(professor.getNome()+" REMOVIDO COM SUCESSO!");
@@ -146,7 +139,7 @@ public class ProfessorMenuController implements Initializable{
         controller.setInteracao(dialogStage);
         controller.setProfessor(professor);
         controller.setLabelTituloProfessor(nome);
-        controller.setValidarProfessor(professorDAO.validarProfessorMat());
+        controller.setValidarProfessor(ProfessorDAO.validarProfessorMat());
         dialogStage.showAndWait();
 
         return controller.isBotaoClicado();

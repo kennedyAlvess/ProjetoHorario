@@ -1,4 +1,6 @@
 package model.dao;
+
+import model.database.DatabasePostgreSQL;
 import model.entidades.Professor;
 
 import java.sql.Connection;
@@ -8,20 +10,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class ProfessorDAO {
 
-    private Connection connection;
+    public static boolean inserir(Professor Professor) {
+        DatabasePostgreSQL conexao = DatabasePostgreSQL.getInstance();
+        Connection connection = conexao.getConexao();
 
-    public Connection getConnection() {
-        return connection;
-    }
-
-    public void setConnection(Connection connection) {
-        this.connection = connection;
-    }
-
-    public boolean inserir(Professor Professor) {
         String sql = "INSERT INTO professores(nome, matricula, titulacao, email) VALUES(?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -37,7 +31,10 @@ public class ProfessorDAO {
         }
     }
 
-    public boolean alterar(Professor Professor) {
+    public static boolean alterar(Professor Professor) {
+        DatabasePostgreSQL conexao = DatabasePostgreSQL.getInstance();
+        Connection connection = conexao.getConexao();
+
         String sql = "UPDATE professores SET nome=?, titulacao=?, email=? WHERE matricula=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -53,7 +50,10 @@ public class ProfessorDAO {
         }
     }
 
-    public boolean remover(Professor Professor) {
+    public static boolean remover(Professor Professor) {
+        DatabasePostgreSQL conexao = DatabasePostgreSQL.getInstance();
+        Connection connection = conexao.getConexao();
+
         String sql = "DELETE FROM professores WHERE matricula=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -66,7 +66,10 @@ public class ProfessorDAO {
         }
     }
 
-    public List<Professor> listar() {
+    public static List<Professor> listar() {
+        DatabasePostgreSQL conexao = DatabasePostgreSQL.getInstance();
+        Connection connection = conexao.getConexao();
+
         String sql = "Select * from professores order by nome";
         List<Professor> retorno = new ArrayList<>();
         try {
@@ -86,7 +89,10 @@ public class ProfessorDAO {
         return retorno;
     }
 
-    public List<String> validarProfessorMat() {
+    public static List<String> validarProfessorMat() {
+        DatabasePostgreSQL conexao = DatabasePostgreSQL.getInstance();
+        Connection connection = conexao.getConexao();
+
         String sql = "SELECT matricula FROM professores";
         List<String> matExistentes = new ArrayList<>();
         try {
@@ -103,4 +109,3 @@ public class ProfessorDAO {
         return matExistentes;
     }
 }
-

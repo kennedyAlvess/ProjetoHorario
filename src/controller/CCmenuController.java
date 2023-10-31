@@ -54,13 +54,11 @@ public class CCmenuController implements Initializable{
     private List<ComponenteCurricular> listComponenteCurricular; 
     private ObservableList<ComponenteCurricular> observableListComponenteCurricular;
 
-    private final DatabasePostgreSQL database = new DatabasePostgreSQL();
-    private final Connection connection = database.conectar();
-    private final ComponenteCurricularDAO componenteCurricularDAO = new ComponenteCurricularDAO();
+    DatabasePostgreSQL conexao = DatabasePostgreSQL.getInstance();
+    Connection connection = conexao.getConexao();
     
     @Override
     public void initialize(URL url, ResourceBundle resources) {
-        componenteCurricularDAO.setConnection(connection);
         carregarTableViewCC();
         tableViewCC.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue
         ) -> selecionarItemTableViewCC(newValue));
@@ -68,7 +66,7 @@ public class CCmenuController implements Initializable{
 
     public void carregarTableViewCC(){
         colunaNomeCC.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        listComponenteCurricular = componenteCurricularDAO.listar();
+        listComponenteCurricular = ComponenteCurricularDAO.listar();
         observableListComponenteCurricular = FXCollections.observableArrayList(listComponenteCurricular);
         tableViewCC.setItems(observableListComponenteCurricular);
     }
@@ -94,7 +92,7 @@ public class CCmenuController implements Initializable{
         ComponenteCurricular componenteCurricular = new ComponenteCurricular();
         boolean botaoConfirmarClicado = showCadastroCC(componenteCurricular,nome);
         if (botaoConfirmarClicado) {
-            componenteCurricularDAO.inserir(componenteCurricular);
+            ComponenteCurricularDAO.inserir(componenteCurricular);
             carregarTableViewCC();
         }
     }
@@ -105,7 +103,7 @@ public class CCmenuController implements Initializable{
         if (componenteCurricular != null) {
             boolean botaoConfirmarClicado = showCadastroCC(componenteCurricular,nome);
             if (botaoConfirmarClicado) {
-                componenteCurricularDAO.alterar(componenteCurricular);
+                ComponenteCurricularDAO.alterar(componenteCurricular);
                 carregarTableViewCC();
             }
         } else {
@@ -119,7 +117,7 @@ public class CCmenuController implements Initializable{
     public void handleBotaoRemoverCC() throws IOException {
         ComponenteCurricular componenteCurricular = tableViewCC.getSelectionModel().getSelectedItem();
         if (componenteCurricular != null) {
-            componenteCurricularDAO.remover(componenteCurricular);
+            ComponenteCurricularDAO.remover(componenteCurricular);
             carregarTableViewCC();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setContentText(componenteCurricular.getNome()+" REMOVIDO COM SUCESSO!");
@@ -152,7 +150,7 @@ public class CCmenuController implements Initializable{
         controller.setInteracaoCC(dialogStage);
         controller.setCC(componenteCurricular);
         controller.setLabelTituloCC(nome);
-        controller.setValidarCC(componenteCurricularDAO.validarCodigoCC());
+        controller.setValidarCC(ComponenteCurricularDAO.validarCodigoCC());
 
         dialogStage.showAndWait();
         return controller.isBotaoClicadoCC();

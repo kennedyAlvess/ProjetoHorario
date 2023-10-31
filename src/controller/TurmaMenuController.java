@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -21,7 +20,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import model.dao.TurmasDAO;
-import model.database.DatabasePostgreSQL;
 import model.entidades.Turma;
 
 public class TurmaMenuController implements Initializable {
@@ -58,13 +56,8 @@ public class TurmaMenuController implements Initializable {
     private List<Turma> listTurma;
     private ObservableList<Turma> observableListTurma;
 
-    private final DatabasePostgreSQL database = new DatabasePostgreSQL();
-    private final Connection connection = database.conectar();
-    private final TurmasDAO turmaDAO = new TurmasDAO();
-
     @Override
     public void initialize(URL url, ResourceBundle resources) {
-        turmaDAO.setConnection(connection);
         carregarTableViewTurma();
         tableViewTurma.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> selecionarItemTableViewTurma(newValue)); // Manipulando na lista
@@ -72,7 +65,7 @@ public class TurmaMenuController implements Initializable {
 
     public void carregarTableViewTurma() {
         colunaNomeTurma.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        listTurma = turmaDAO.listar();
+        listTurma = TurmasDAO.listar();
         observableListTurma = FXCollections.observableArrayList(listTurma);
         tableViewTurma.setItems(observableListTurma);
     }
@@ -104,8 +97,8 @@ public class TurmaMenuController implements Initializable {
         Turma turma = new Turma();
         boolean botaoConfirmarClicado = showCadastroTurma(turma, nome);
         if (botaoConfirmarClicado) {
-            turmaDAO.inserir(turma);
-            turmaDAO.cadastrarCargaHoraria(turma);
+            TurmasDAO.inserir(turma);
+            TurmasDAO.cadastrarCargaHoraria(turma);
             carregarTableViewTurma();
         }
     }
@@ -117,7 +110,7 @@ public class TurmaMenuController implements Initializable {
         if (turma != null) {
             boolean botaoConfirmarClicado = showCadastroTurma(turma, nome);
             if (botaoConfirmarClicado) {
-                turmaDAO.alterar(turma);
+                TurmasDAO.alterar(turma);
                 carregarTableViewTurma();
             }
         } else {
@@ -131,7 +124,7 @@ public class TurmaMenuController implements Initializable {
     public void handleBotaoRemoverTurma() throws IOException {
         Turma turma = tableViewTurma.getSelectionModel().getSelectedItem();
         if (turma != null) {
-            turmaDAO.remover(turma);
+            TurmasDAO.remover(turma);
             carregarTableViewTurma();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setContentText("TURMA " + turma.getNome() + " REMOVIDA COM SUCESSO!");
@@ -182,8 +175,8 @@ public class TurmaMenuController implements Initializable {
         controller.setInteracao(dialogStage);
         controller.setTurma(turma);
         controller.setLabelTituloTurma(nome);
-        controller.setListaDeProfessores(turmaDAO.cargaHrProfessor());
-        controller.setListaDeTurmas(turmaDAO.validarTurma());
+        controller.setListaDeProfessores(TurmasDAO.cargaHrProfessor());
+        controller.setListaDeTurmas(TurmasDAO.validarTurma());
         
         dialogStage.showAndWait();
 

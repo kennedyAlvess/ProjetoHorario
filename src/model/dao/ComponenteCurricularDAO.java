@@ -1,4 +1,6 @@
 package model.dao;
+
+import model.database.DatabasePostgreSQL;
 import model.entidades.ComponenteCurricular;
 
 import java.sql.Connection;
@@ -8,19 +10,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class ComponenteCurricularDAO {
-    private Connection connection;
 
-    public Connection getConnection() {
-        return connection;
-    }
 
-    public void setConnection(Connection connection) {
-        this.connection = connection;
-    }
-
-    public boolean inserir(ComponenteCurricular componentecurricular) {
+    public static boolean inserir(ComponenteCurricular componentecurricular) {
+        DatabasePostgreSQL conexao = DatabasePostgreSQL.getInstance();
+        Connection connection = conexao.getConexao();
         String sql = "INSERT INTO componentecurricular(nomecc, cargahorariacc, codigocc, semestre, obrigatoriedade) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -37,7 +32,9 @@ public class ComponenteCurricularDAO {
         }
     }
 
-    public boolean alterar(ComponenteCurricular componentecurricular) {
+    public static boolean alterar(ComponenteCurricular componentecurricular) {
+        DatabasePostgreSQL conexao = DatabasePostgreSQL.getInstance();
+        Connection connection = conexao.getConexao();
         String sql = "UPDATE componentecurricular SET nomecc=?, cargahorariacc=?, semestre=?, obrigatoriedade=? WHERE codigocc=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -54,7 +51,9 @@ public class ComponenteCurricularDAO {
         }
     }
 
-    public boolean remover(ComponenteCurricular componentecurricular) {
+    public static boolean remover(ComponenteCurricular componentecurricular) {
+        DatabasePostgreSQL conexao = DatabasePostgreSQL.getInstance();
+        Connection connection = conexao.getConexao();
         String sql = "DELETE FROM componentecurricular WHERE codigocc=?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -67,7 +66,9 @@ public class ComponenteCurricularDAO {
         }
     }
 
-    public List<ComponenteCurricular> listar() {
+    public static List<ComponenteCurricular> listar() {
+        DatabasePostgreSQL conexao = DatabasePostgreSQL.getInstance();
+        Connection connection = conexao.getConexao();
         String sql = "select * from componentecurricular order by nomecc";
         List<ComponenteCurricular> retorno = new ArrayList<>();
         try {
@@ -88,7 +89,9 @@ public class ComponenteCurricularDAO {
         return retorno;
     }
 
-    public List<String> validarCodigoCC() {
+    public static List<String> validarCodigoCC() {
+        DatabasePostgreSQL conexao = DatabasePostgreSQL.getInstance();
+        Connection connection = conexao.getConexao();
         String sql = "SELECT codigocc FROM componentecurricular";
         List<String> ccExistentes = new ArrayList<>();
         try {
@@ -105,8 +108,3 @@ public class ComponenteCurricularDAO {
         return ccExistentes;
     }
 }
-
-
-
-
-

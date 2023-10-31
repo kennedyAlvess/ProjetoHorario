@@ -5,26 +5,30 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabasePostgreSQL {
+
+    private static DatabasePostgreSQL instance;
     private Connection connection;
 
    
-    public Connection conectar() {
+    private DatabasePostgreSQL() {
         try {
             Class.forName("org.postgresql.Driver");
-            this.connection = DriverManager.getConnection("caminho_para_seu_banco_de_dados","user","senha");
-            return this.connection;
+            this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/BDprojeto","postgres", System.getenv("senhaDB"));
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println("Drive não encontrado ou erro na conexao com o banco de dados");
-            return null;
         }
     }
-    
-    public void desconectar(Connection connection) {
-        try {
-            connection.close();
-        } catch (SQLException ex) {
-            System.out.println("Falha ao tentar fechar o banco de dados");
+
+    public static synchronized DatabasePostgreSQL getInstance(){
+        if(instance == null){
+            instance = new DatabasePostgreSQL();
         }
+
+        return instance;
+    }
+    
+    public Connection getConexao(){
+        return this.connection;
     }
 }
 
